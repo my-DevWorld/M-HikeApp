@@ -1,0 +1,114 @@
+package com.example.m_hikeapp.sqlite;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import androidx.annotation.Nullable;
+
+import com.example.m_hikeapp.models.Hike;
+import com.example.m_hikeapp.models.HikeObservation;
+import com.example.m_hikeapp.utils.Constants;
+
+public class DatabaseConnection extends SQLiteOpenHelper {
+
+    private Context context;
+
+    public DatabaseConnection(@Nullable Context context) {
+        super(context, Constants.DATABASE_NAME, null, Constants.DATABASE_VERSION);
+        this.context = context;
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        String query = "CREATE TABLE " + Constants.FIRST_TABLE_NAME
+                + " (" + Constants.FIRST_TABLE_COLUM_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + Constants.FIRST_TABLE_COLUM_2 + " TEXT, "
+                + Constants.FIRST_TABLE_COLUM_3 + " TEXT, "
+                + Constants.FIRST_TABLE_COLUM_4 + " TEXT, "
+                + Constants.FIRST_TABLE_COLUM_5 + " TEXT, "
+                + Constants.FIRST_TABLE_COLUM_6 + " TEXT, "
+                + Constants.FIRST_TABLE_COLUM_7 + " TEXT, "
+                + Constants.FIRST_TABLE_COLUM_8 + " TEXT, "
+                + Constants.FIRST_TABLE_COLUM_9 + " TEXT, "
+                + Constants.FIRST_TABLE_COLUM_10 + " TEXT);";
+
+        db.execSQL(query);
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS " + Constants.FIRST_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + Constants.SECOND_TABLE_NAME);
+        onCreate(db);
+    }
+
+    public void createObservation(SQLiteDatabase db) {
+        String query = "CREATE TABLE " + Constants.SECOND_TABLE_NAME
+                + " (" + Constants.SECOND_TABLE_COLUM_1 + " INTEGER, "
+                + Constants.SECOND_TABLE_COLUM_2 + " TEXT, "
+                + Constants.SECOND_TABLE_COLUM_3 + " TEXT, "
+                + Constants.SECOND_TABLE_COLUM_4 + " TEXT);";
+
+        db.execSQL(query);
+    }
+
+    public long addHike(Hike hike) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(Constants.FIRST_TABLE_COLUM_2, hike.getHikeName());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_3, hike.getLocation());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_4, hike.getDate());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_5, hike.getDistance());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_6, hike.getPurposeOfHike());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_7, hike.getDescription());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_8, hike.getNumberOfPersons());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_9, hike.getParkingAvailable());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_10, hike.getCamping());
+
+        return db.insert(Constants.FIRST_TABLE_NAME, null, contentValues);
+    }
+
+    public long addObservation(SQLiteDatabase db, HikeObservation observation) {
+        createObservation(db);
+        db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(Constants.SECOND_TABLE_COLUM_1, observation.getId());
+        contentValues.put(Constants.SECOND_TABLE_COLUM_2, observation.getObservation());
+        contentValues.put(Constants.SECOND_TABLE_COLUM_3, observation.getTime());
+        contentValues.put(Constants.SECOND_TABLE_COLUM_4, observation.getAdditionalComment());
+
+        return db.insert(Constants.SECOND_TABLE_NAME, null, contentValues);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

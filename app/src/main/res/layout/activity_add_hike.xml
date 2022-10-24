@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.AddHike">
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="@dimen/obj_24"
+        android:layout_height="@dimen/obj_24"
+        android:layout_marginStart="@dimen/obj_24"
+        android:layout_marginTop="@dimen/obj_26"
+        android:contentDescription="@string/back"
+        android:src="@drawable/ic_back_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/addHikeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/obj_24"
+        android:layout_marginTop="@dimen/obj_30"
+        android:fontFamily="@font/gilroymedium"
+        android:text="@string/add_hike"
+        android:textAlignment="center"
+        android:textColor="@color/greyishBrown"
+        android:textSize="@dimen/textSize_25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/close" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/obj_10"
+        android:paddingTop="@dimen/obj_12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addHikeLabel">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/hikeNameOutline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/obj_24"
+                android:layout_marginEnd="@dimen/obj_24"
+                android:hint="@string/hike_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/hikeName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroymedium"
+                    android:inputType="text"
+                    android:textColor="@color/blackText"
+                    android:textSize="@dimen/textSize_20" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/locationOutline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/obj_24"
+                android:layout_marginTop="@dimen/obj_10"
+                android:layout_marginEnd="@dimen/obj_24"
+                android:hint="@string/hike_location"
+                app:endIconCheckable="true"
+                app:endIconDrawable="@drawable/ic_location_on_24"
+                app:endIconMode="custom"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hikeNameOutline">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroymedium"
+                    android:inputType="text"
+                    android:textColor="@color/blackText"
+                    android:textSize="@dimen/textSize_20" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/group_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/obj_24"
+                android:layout_marginTop="@dimen/obj_10"
+                android:layout_marginEnd="@dimen/obj_24"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/locationOutline">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dateOutline"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/obj_5"
+                    android:layout_weight="1"
+                    android:hint="@string/hike_date">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gilroymedium"
+                        android:textColor="@color/blackText"
+                        android:textSize="@dimen/textSize_20" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/distanceOutline"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/obj_5"
+                    android:layout_weight="1"
+                    android:hint="@string/distance"
+                    app:suffixText="@string/km">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/distance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/gilroymedium"
+                        android:inputType="number"
+                        android:textColor="@color/blackText"
+                        android:textSize="@dimen/textSize_20" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/difficultLevelLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/obj_24"
+                android:layout_marginTop="@dimen/obj_10"
+                android:fontFamily="@font/gilroymedium"
+                android:text="@string/difficulty_level"
+                android:textAlignment="center"
+                android:textColor="@color/greyishBrown"
+                android:textSize="@dimen/textSize_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/group_view" />
+
+            <LinearLayout
+                android:id="@+id/strengthIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/obj_24"
+                android:layout_marginTop="@dimen/obj_10"
+                android:layout_marginEnd="@dimen/obj_56"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/difficultLevelLabel">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/obj_5"
+                    android:layout_marginEnd="1.5dp"
+                    android:layout_weight="1"
+                    android:background="@color/brownishGreyTwo" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/obj_5"
+                    android:layout_marginStart="1.5dp"
+                    android:layout_marginEnd="1.5dp"
+                    android:layout_weight="1"
+                    android:background="@color/brownishGreyTwo" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/obj_5"
+                    android:layout_marginStart="1.5dp"
+                    android:layout_marginEnd="1.5dp"
+                    android:layout_weight="1"
+                    android:background="@color/brownishGreyTwo" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/obj_5"
+                    android:layout_marginStart="1.5dp"
+                    android:layout_marginEnd="1.5dp"
+                    android:layout_weight="1"
+                    android:background="@color/brownishGreyTwo" />
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/hikePurposeOutline"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/obj_24"
+                android:layout_marginTop="@dimen/obj_10"
+                android:layout_marginEnd="@dimen/obj_24"
+                android:background="@color/white"
+                android:hint="@string/hike_purpose"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/strengthIndicator">
+
+                <AutoCompleteTextView
+                    android:id="@+id/hikePurpose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textSize_20"
+                    android:background="@color/white"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/descriptionOutline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/obj_24"
+                android:layout_marginTop="@dimen/obj_10"
+                android:layout_marginEnd="@dimen/obj_24"
+                android:hint="@string/description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hikePurposeOutline">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:fontFamily="@font/gilroymedium"
+                    android:inputType="none"
+                    android:maxHeight="50dp"
+                    android:maxLength="100"
+                    android:maxLines="5"
+                    android:textColor="@color/blackText"
+                    android:textSize="@dimen/textSize_20" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/numbOfPersonsOutline"
+                android:layout_width="@dimen/obj_150"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/obj_24"
+                android:layout_marginTop="@dimen/obj_10"
+                android:layout_marginEnd="@dimen/obj_24"
+                android:layout_weight="1"
+                android:hint="@string/numb_of_persons"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionOutline">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/numbOfPersons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroymedium"
+                    android:inputType="number"
+                    android:textColor="@color/blackText"
+                    android:textSize="@dimen/textSize_20" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/campingLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/obj_24"
+                android:layout_marginTop="@dimen/obj_15"
+                android:fontFamily="@font/gilroymedium"
+                android:text="@string/camping"
+                android:textAlignment="center"
+                android:textColor="@color/greyishBrown"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/numbOfPersonsOutline" />
+
+            <RadioGroup
+                android:id="@+id/campingRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/obj_24"
+                android:layout_marginTop="@dimen/obj_10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/campingLabel">
+
+                <RadioButton
+                    android:id="@+id/campingYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroysemibold"
+                    android:text="@string/yes"
+                    android:textSize="@dimen/textSize_18" />
+
+                <RadioButton
+                    android:id="@+id/campingNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroysemibold"
+                    android:text="@string/no"
+                    android:textSize="@dimen/textSize_18" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/parkingAvalLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/obj_24"
+                android:layout_marginTop="@dimen/obj_15"
+                android:fontFamily="@font/gilroymedium"
+                android:text="@string/parking_aval"
+                android:textAlignment="center"
+                android:textColor="@color/greyishBrown"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintBottom_toBottomOf="@+id/campingLabel"
+                app:layout_constraintStart_toEndOf="@+id/campingLabel" />
+
+            <RadioGroup
+                android:id="@+id/parkingAvalRadioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/obj_24"
+                android:layout_marginTop="@dimen/obj_10"
+                app:layout_constraintStart_toEndOf="@+id/campingLabel"
+                app:layout_constraintTop_toBottomOf="@+id/parkingAvalLabel">
+
+                <RadioButton
+                    android:id="@+id/parkingAvalYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroysemibold"
+                    android:text="@string/yes"
+                    android:textSize="@dimen/textSize_18" />
+
+                <RadioButton
+                    android:id="@+id/parkingAvalNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/gilroysemibold"
+                    android:text="@string/no"
+                    android:textSize="@dimen/textSize_18" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/submitBtn"
+                style="@android:style/Widget.Material.Button"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/orange_background"
+                android:elevation="2dp"
+                android:fontFamily="@font/gilroysemibold"
+                android:text="@string/confirm"
+                android:textAllCaps="false"
+                android:textColor="@color/whiteTextColor"
+                android:textSize="@dimen/textSize_20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/parkingAvalRadioGroup" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/obj_150"
+                android:layout_marginTop="@dimen/obj_40"
+                android:layout_marginBottom="@dimen/obj_40"
+                app:layout_constraintTop_toBottomOf="@+id/submitBtn" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

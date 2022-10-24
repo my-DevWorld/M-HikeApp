@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SplashScreenTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FF6D00</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_android_black_24dp</item>
+        <item name="windowSplashScreenIconBackgroundColor">#FFFFFF</item>
+        <item name="postSplashScreenTheme">@style/Theme.MHike </item>
+    </style>
+
+<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+<!--    </style>-->
+</resources>

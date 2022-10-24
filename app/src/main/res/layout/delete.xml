@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.Home">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/edit_text_border_brown_grey"
+        android:elevation="5dp"
+        app:cardElevation="3dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/autocomplete"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/searchProperty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_toStartOf="@+id/search_icon"
+                android:fontFamily="@font/gilroymedium"
+                android:gravity="center_vertical"
+                android:hint="Search location"
+                android:textColor="@color/blackText"
+                android:textSize="15sp" />
+
+
+            <ImageView
+                android:id="@+id/search_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_baseline_search_24" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <HorizontalScrollView
+        android:id="@+id/searchOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="24dp"
+        android:fillViewport="false"
+        android:measureAllChildren="false"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/priceFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/default_border"
+                android:fontFamily="@font/gilroymedium"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:paddingEnd="8dp"
+                android:text="Price"
+                android:textColor="@color/greyishBrown"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/type_of_propertyFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/default_border"
+                android:fontFamily="@font/gilroymedium"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:paddingEnd="8dp"
+                android:text="Type of property"
+                android:textColor="@color/greyishBrown"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/landLordPresentFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/default_border"
+                android:fontFamily="@font/gilroymedium"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:paddingEnd="8dp"
+                android:text="Landlord Present"
+                android:textColor="@color/greyishBrown"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/facilitiesFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/default_border"
+                android:fontFamily="@font/gilroymedium"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:paddingEnd="8dp"
+                android:text="Facilities"
+                android:textColor="@color/greyishBrown"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/paymentPlanFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/default_border"
+                android:fontFamily="@font/gilroymedium"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:paddingEnd="8dp"
+                android:text="Payment terms"
+                android:textColor="@color/greyishBrown"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/datePublishFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/default_border"
+                android:fontFamily="@font/gilroymedium"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:paddingEnd="8dp"
+                android:text="Date uploaded"
+                android:textColor="@color/greyishBrown"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchOptions">
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="@string/fab_content_desc"
+        android:elevation="4dp"
+        app:backgroundTint="@color/buttonColor"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:pressedTranslationZ="4dp"
+        app:shapeAppearance="@drawable/fab_background"
+        app:shapeAppearanceOverlay="@drawable/fab_background"
+        app:srcCompat="@drawable/ic_plus_24" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/whiteTextColor"
+        app:itemIconSize="20dp"
+        app:itemIconTint="@drawable/bottom_navigation_item_colors"
+        app:itemRippleColor="@color/brownishGreyTwo"
+        app:itemTextAppearanceActive="@font/gilroymedium"
+        app:itemTextAppearanceInactive="@font/gilroylight"
+        app:itemTextColor="@drawable/bottom_navigation_item_colors"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
+</androidx.constraintlayout.widget.ConstraintLayout>

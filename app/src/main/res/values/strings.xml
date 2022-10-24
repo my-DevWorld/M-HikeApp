@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">M-Hike</string>
+
+    <string name="closewindow">Close Window</string>
+    <string name="email_password_error">Incorrect email or password</string>
+    <string name="measemaster_log">Measemaster Log</string>
+    <string name="oops_page_not_found">Oops..."\n"Page Not Found</string>
+    <string name="error_description_404">We can’t seem to find the page you are"\n"looking for.</string>
+    <string name="password">Password</string>
+    <string name="e_mail_address">E-mail</string>
+    <string name="log_in">Log in</string>
+    <string name="fb_logo">fb logo</string>
+    <string name="google_logo">google logo</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="or">or</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="don_t_have_an_account">Don’t have an account?\u0020</string>
+    <string name="sign_up">Sign up</string>
+    <string name="already_have_an_account">Already have an account?\u0020</string>
+    <string name="login_here">Login here</string>
+    <string name="full_name">Full Name</string>
+    <string name="agreement">By signing up, you agree to the Terms and conditions of M-Hike</string>
+    <string name="reset_password">Reset password</string>
+    <string name="a_reset_password_link_will_be_sent_to_your_email_address_follow_to_create_a_new_password">A reset password link will be sent to your email address. Follow to create a new password.</string>
+    <string name="send">Send</string>
+    <string name="full_name_is_required">Full name is required</string>
+    <string name="email_address_is_reqiured">Email address is required</string>
+    <string name="enter_valid_email">Enter a valid email address</string>
+    <string name="creat_password">Please create a password</string>
+    <string name="password_lenght">Password should be at least 8 character long</string>
+    <string name="enter_password">Enter your password</string>
+    <string name="enter_email">Enter email address</string>
+    <string name="invalid_email_or_password">Invalid email or password</string>
+
+    <!--    <string name="default_web_client_id" translatable="false">28423641706-k2let461sr26a1bn9dmahrhfusv0b3nc.apps.googleusercontent.com</string>-->
+    <string name="signin_successful">Sign in successful</string>
+
+    <!--    <string name="Client_ID" translatable="false">28423641706-r6anagn5e3aqdtlt1uc3qt1egpj9tfmc.apps.googleusercontent.com</string>-->
+    <!--    <string name="Client_Secret" translatable="false"> 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</string>-->
+    <string name="back">back</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="signup_failed">Sign up failed</string>
+    <string name="web_client_id">28423641706-k2let461sr26a1bn9dmahrhfusv0b3nc.apps.googleusercontent.com</string>
+    <string name="fab_content_desc">Add Hike</string>
+    <string name="add_hike">Add Hike</string>
+    <string name="hike_name">Hike name</string>
+    <string name="hike_location">Location</string>
+    <string name="numb_of_persons">No. of Persons</string>
+    <string name="hike_date">Date</string>
+    <string name="distance">Distance</string>
+    <string name="difficulty_level">Difficulty level</string>
+    <string name="hike_purpose">Purpose of hike</string>
+    <string name="km">km</string>
+    <string name="description">Description</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="camping">Are you camping?</string>
+    <string name="required">Required</string>
+    <string name="parking_aval">Parking Available</string>
+    <string name="parking_availability">Please select parking availability</string>
+    <string name="submit">Submit</string>
+    <string name="new_hike">New Hike</string>
+    <string name="edit">Edit</string>
+    <string name="confirm">Confirm</string>
+    <string name="save">Save</string>
+    <string name="sign_up_with_email">Sign up with email</string>
+    <string name="yes_caps">YES</string>
+    <string name="hike_not_created">Hike not created, please try again</string>
+    <string name="search_location">Search location</string>
+    <string name="no_hike_created">No Hike created</string>
+
+    <string-array name="purpose_of_hike">
+        <item>Charity</item>
+        <item>Corporate</item>
+        <item>Personal</item>
+        <item>Other</item>
+    </string-array>
+</resources>

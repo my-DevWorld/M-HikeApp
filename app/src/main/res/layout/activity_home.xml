@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.Home">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/obj_20"
+        android:layout_marginTop="@dimen/obj_20"
+        android:layout_marginEnd="@dimen/obj_20"
+        android:background="@drawable/edit_text_border_brown_grey"
+        android:elevation="@dimen/obj_5"
+        app:cardElevation="@dimen/obj_3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/autocomplete"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/obj_54"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/searchProperty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/obj_16"
+                android:layout_toStartOf="@+id/search_icon"
+                android:fontFamily="@font/gilroymedium"
+                android:gravity="center_vertical"
+                android:hint="@string/search_location"
+                android:textColor="@color/blackText"
+                android:textSize="@dimen/textSize_15" />
+
+
+            <ImageView
+                android:id="@+id/search_icon"
+                android:layout_width="@dimen/obj_24"
+                android:layout_height="@dimen/obj_24"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/obj_20"
+                android:layout_marginEnd="@dimen/obj_16"
+                android:src="@drawable/ic_baseline_search_24" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <HorizontalScrollView
+        android:id="@+id/searchOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/obj_24"
+        android:layout_marginTop="@dimen/obj_10"
+        android:layout_marginEnd="@dimen/obj_24"
+        android:fillViewport="false"
+        android:measureAllChildren="false"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/obj_16">
+
+            <TextView
+                android:id="@+id/priceFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/obj_40"
+                android:background="@drawable/default_border"
+                android:fontFamily="@font/gilroymedium"
+                android:gravity="center"
+                android:paddingStart="@dimen/obj_8"
+                android:paddingLeft="@dimen/obj_8"
+                android:paddingEnd="@dimen/obj_8"
+                android:text="Price"
+                android:textColor="@color/greyishBrown"
+                android:textSize="@dimen/textSize_13" />
+
+            <TextView
+                android:id="@+id/type_of_propertyFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/obj_40"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/default_border"
+                android:fontFamily="@font/gilroymedium"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:paddingEnd="8dp"
+                android:text="Type of property"
+                android:textColor="@color/greyishBrown"
+                android:textSize="@dimen/textSize_13" />
+
+            <TextView
+                android:id="@+id/landLordPresentFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/obj_40"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/default_border"
+                android:fontFamily="@font/gilroymedium"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:paddingEnd="8dp"
+                android:text="Landlord Present"
+                android:textColor="@color/greyishBrown"
+                android:textSize="@dimen/textSize_13" />
+
+            <TextView
+                android:id="@+id/facilitiesFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/obj_40"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/default_border"
+                android:fontFamily="@font/gilroymedium"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:paddingEnd="8dp"
+                android:text="Facilities"
+                android:textColor="@color/greyishBrown"
+                android:textSize="@dimen/textSize_13" />
+
+            <TextView
+                android:id="@+id/paymentPlanFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/obj_40"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/default_border"
+                android:fontFamily="@font/gilroymedium"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:paddingEnd="8dp"
+                android:text="Payment terms"
+                android:textColor="@color/greyishBrown"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/datePublishFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/obj_40"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/default_border"
+                android:fontFamily="@font/gilroymedium"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingLeft="8dp"
+                android:paddingEnd="8dp"
+                android:text="Date uploaded"
+                android:textColor="@color/greyishBrown"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <ImageView
+        android:id="@+id/emptyState"
+        android:layout_width="@dimen/obj_110"
+        android:layout_height="@dimen/obj_110"
+        android:src="@drawable/inbox"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/emptyStateText"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/obj_40"
+        android:layout_marginTop="@dimen/obj_5"
+        android:fontFamily="@font/gilroymedium"
+        android:padding="@dimen/obj_10"
+        android:text="@string/no_hike_created"
+        android:textColor="@color/greyishBrown"
+        android:textSize="@dimen/textSize_20"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emptyState" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/obj_12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchOptions"
+        android:visibility="gone">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginEnd="@dimen/obj_24"
+        android:layout_marginBottom="@dimen/obj_24"
+        android:contentDescription="@string/fab_content_desc"
+        android:elevation="@dimen/obj_5"
+        app:backgroundTint="@color/buttonColor"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:pressedTranslationZ="@dimen/obj_05"
+        app:shapeAppearance="@drawable/fab_background"
+        app:shapeAppearanceOverlay="@drawable/fab_background"
+        app:srcCompat="@drawable/ic_plus_24" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/whiteTextColor"
+        app:itemIconSize="@dimen/obj_24"
+        app:itemIconTint="@drawable/bottom_navigation_item_colors"
+        app:itemRippleColor="@color/brownishGreyTwo"
+        app:itemTextAppearanceActive="@font/gilroymedium"
+        app:itemTextAppearanceInactive="@font/gilroylight"
+        app:itemTextColor="@drawable/bottom_navigation_item_colors"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+

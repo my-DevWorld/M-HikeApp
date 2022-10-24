@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <color name="purple_200">#FFBB86FC</color>-->
+<!--    <color name="purple_500">#FF6200EE</color>-->
+<!--    <color name="purple_700">#FF3700B3</color>-->
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#f37421</color>
+
+    <color name="buttonColor">#74E8DB</color>
+
+    <color name="greyishBrown">#484848</color>
+    <color name="orange">#f37421</color>
+    <color name="blackText">#000000</color>
+    <color name="whiteTextColor">#ffff</color>
+    <color name="brownGrey">#99979797</color>
+    <color name="midBlue">#2e5eaa</color>
+    <color name="brownishGrey">#787878</color>
+    <color name="brownishGreyTwo">#E0E0E0</color>
+    <color name="veryLightPink">#ebebeb</color>
+    <color name="errorColor">#ff0000</color>
+    <color name="lineColor">#ebebeb</color>
+    <color name="google_btn">#484848</color>
+    <color name="frame_background">#CCFFFFFF</color>
+</resources>
