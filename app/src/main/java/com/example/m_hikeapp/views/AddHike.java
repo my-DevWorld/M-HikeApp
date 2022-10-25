@@ -1,10 +1,10 @@
 package com.example.m_hikeapp.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -16,12 +16,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.example.m_hikeapp.R;
 import com.example.m_hikeapp.models.Hike;
 import com.example.m_hikeapp.utils.Constants;
 import com.example.m_hikeapp.utils.UISupport;
+import com.example.m_hikeapp.viewmodels.AddHikeViewModel;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -33,6 +33,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AddHike extends AppCompatActivity {
+
+    private AddHikeViewModel viewModel;
+
     private TextInputLayout hikeNameOutline, locationOutline, dateOutline, distanceOutline, hikePurposeOutline;
     private TextInputEditText hikeName, location, date, distance, description, numbOfPersons;
     private AutoCompleteTextView hikePurpose;
@@ -52,9 +55,17 @@ public class AddHike extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_hike);
+
+//        Initialising viewModel
+        viewModel = new ViewModelProvider(this).get(AddHikeViewModel.class);
+
+//        Get Data back from confirmation activity
         Intent intent = getIntent();
         String editDetails = intent.getStringExtra(Constants.EDIT_DETAILS_KEY);
+
         init();
+
+//        Setting data from confirmation activity to view elements
         if (editDetails != null) {
             hike = intent.getParcelableExtra(Constants.HIKE_DETAILS);
             hikeName.setText(hike.getHikeName());
@@ -78,6 +89,7 @@ public class AddHike extends AppCompatActivity {
         }
     }
 
+    //        Initialise view objects
     private void init() {
         close = findViewById(R.id.close);
         hikeNameOutline = findViewById(R.id.hikeNameOutline);
@@ -116,7 +128,6 @@ public class AddHike extends AppCompatActivity {
 
         datePicker();
         onClickEvents();
-
     }
 
     //        Method for onClick events.
@@ -212,12 +223,9 @@ public class AddHike extends AppCompatActivity {
                     date.getText().toString(), distance.getText().toString(),
                     hikePurpose.getText().toString(), description.getText().toString(),
                     numbOfPersons.getText().toString(),
-                    parkingAvalSelectedRadioButton.getText().toString(), camping);
+                    parkingAvalSelectedRadioButton.getText().toString(), camping, null);
 
-            Intent intent = new Intent(AddHike.this, DetailsConfirmation.class);
-            intent.putExtra(Constants.HIKE_DETAILS, hike);
-            startActivity(intent);
-            finish();
+            viewModel.submitData(this, hike);
         }
     }
 

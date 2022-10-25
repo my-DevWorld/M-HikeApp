@@ -24,11 +24,14 @@ public class DetailsConfirmationViewModel extends AndroidViewModel {
     }
 
     public void insertHike(Activity activity, Hike hike) {
+        //TODO: Load progress bar
         if (dbConnection.addHike(hike) == -1){
+            //TODO: spot progress bar
             Snackbar.make(activity.findViewById(R.id.submitBtn), getApplication().getResources().getString(R.string.hike_not_created), Snackbar.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getApplication(), "Success", Toast.LENGTH_SHORT).show();
-            getApplication().startActivity(new Intent(activity, Home.class));
+            //TODO: spot progress bar
+            Toast.makeText(getApplication(), R.string.hike_created_successfully, Toast.LENGTH_SHORT).show();
+            activity.startActivity(new Intent(activity, Home.class));
             activity.finish();
         }
     }

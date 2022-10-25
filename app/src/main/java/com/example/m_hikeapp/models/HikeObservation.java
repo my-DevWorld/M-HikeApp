@@ -8,12 +8,14 @@ public class HikeObservation implements Parcelable {
     private String observation;
     private String time;
     private String additionalComment;
+    private String hikeObservationImage;
 
-    public HikeObservation(int id, String observation, String time, String additionalComment) {
+    public HikeObservation(int id, String observation, String time, String additionalComment, String hikeObservationImage) {
         this.id = id;
         this.observation = observation;
         this.time = time;
         this.additionalComment = additionalComment;
+        this.hikeObservationImage = hikeObservationImage;
     }
 
     protected HikeObservation(Parcel in) {
@@ -21,6 +23,7 @@ public class HikeObservation implements Parcelable {
         observation = in.readString();
         time = in.readString();
         additionalComment = in.readString();
+        hikeObservationImage = in.readString();
     }
 
     @Override
@@ -29,6 +32,7 @@ public class HikeObservation implements Parcelable {
         dest.writeString(observation);
         dest.writeString(time);
         dest.writeString(additionalComment);
+        dest.writeString(hikeObservationImage);
     }
 
     @Override
@@ -78,5 +82,13 @@ public class HikeObservation implements Parcelable {
 
     public void setAdditionalComment(String additionalComment) {
         this.additionalComment = additionalComment;
+    }
+
+    public String getHikeObservationImage() {
+        return hikeObservationImage;
+    }
+
+    public void setHikeObservationImage(String hikeObservationImage) {
+        this.hikeObservationImage = hikeObservationImage;
     }
 }

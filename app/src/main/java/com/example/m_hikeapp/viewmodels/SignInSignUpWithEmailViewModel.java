@@ -98,9 +98,9 @@ public class SignInSignUpWithEmailViewModel extends AndroidViewModel {
                 .addOnSuccessListener(activity, new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-//                      Sign in success.
-                        FirebaseUser user = mAuth.getCurrentUser();
                         activity.findViewById(R.id.progressContainer).setVisibility(View.GONE);
+//                      Sign in success.
+//                        FirebaseUser user = mAuth.getCurrentUser();
                         Toast.makeText(activity, R.string.signin_successful, Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(activity, Home.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

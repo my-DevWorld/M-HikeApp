@@ -69,6 +69,9 @@
     <string name="hike_not_created">Hike not created, please try again</string>
     <string name="search_location">Search location</string>
     <string name="no_hike_created">No Hike created</string>
+    <string name="hike_created_successfully">Hike created Successfully</string>
+    <string name="confirm_details">Confirm details</string>
+    <string name="separator">\u0020 | \u0020</string>
 
     <string-array name="purpose_of_hike">
         <item>Charity</item>

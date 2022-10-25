@@ -36,4 +36,7 @@
     <dimen name="obj_3">3dp</dimen>
     <dimen name="textSize_13">13sp</dimen>
     <dimen name="obj_110">110dp</dimen>
+    <dimen name="obj_230">230dp</dimen>
+    <dimen name="textSize_22">22sp</dimen>
+    <dimen name="obj_50">50dp</dimen>
 </resources>

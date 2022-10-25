@@ -102,6 +102,9 @@ public class Login extends AppCompatActivity {
         });
         loginBtn.setOnClickListener(v -> {
             uiSupport.hideSoftKeyboard(this, loginBtn);
+            loginBtn.requestFocus();
+            loginBtn.setFocusable(true);
+            loginPassword.clearFocus();
             formValidation();
         });
 

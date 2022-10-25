@@ -42,12 +42,26 @@
             android:visibility="visible" />
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/obj_24"
+        android:layout_marginTop="@dimen/obj_15"
+        android:fontFamily="@font/gilroymedium"
+        android:text="@string/confirm_details"
+        android:textAlignment="center"
+        android:textColor="@color/greyishBrown"
+        android:textSize="@dimen/textSize_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionBar" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/hikeNameOutline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/actionBar"
-        android:layout_marginTop="@dimen/obj_36"
+        app:layout_constraintTop_toBottomOf="@+id/label"
+        android:layout_marginTop="@dimen/obj_20"
         android:layout_marginStart="@dimen/obj_24"
         android:layout_marginEnd="@dimen/obj_24"
         android:hint="@string/hike_name"
