@@ -3,9 +3,6 @@
 
     <string name="closewindow">Close Window</string>
     <string name="email_password_error">Incorrect email or password</string>
-    <string name="measemaster_log">Measemaster Log</string>
-    <string name="oops_page_not_found">Oops..."\n"Page Not Found</string>
-    <string name="error_description_404">We can’t seem to find the page you are"\n"looking for.</string>
     <string name="password">Password</string>
     <string name="e_mail_address">E-mail</string>
     <string name="log_in">Log in</string>
@@ -32,11 +29,8 @@
     <string name="enter_email">Enter email address</string>
     <string name="invalid_email_or_password">Invalid email or password</string>
 
-    <!--    <string name="default_web_client_id" translatable="false">28423641706-k2let461sr26a1bn9dmahrhfusv0b3nc.apps.googleusercontent.com</string>-->
     <string name="signin_successful">Sign in successful</string>
 
-    <!--    <string name="Client_ID" translatable="false">28423641706-r6anagn5e3aqdtlt1uc3qt1egpj9tfmc.apps.googleusercontent.com</string>-->
-    <!--    <string name="Client_Secret" translatable="false"> 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</string>-->
     <string name="back">back</string>
     <string name="continue_with_facebook">Continue with Facebook</string>
     <string name="something_went_wrong">Something went wrong</string>
@@ -51,11 +45,13 @@
     <string name="distance">Distance</string>
     <string name="difficulty_level">Difficulty level</string>
     <string name="hike_purpose">Purpose of hike</string>
-    <string name="km">km</string>
+    <string name="km">\u0020km</string>
     <string name="description">Description</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="camping">Are you camping?</string>
+    <string name="camping1">Camping:\u0020</string>
+    <string name="parking">Parking Aval:\u0020</string>
     <string name="required">Required</string>
     <string name="parking_aval">Parking Available</string>
     <string name="parking_availability">Please select parking availability</string>
@@ -67,11 +63,30 @@
     <string name="sign_up_with_email">Sign up with email</string>
     <string name="yes_caps">YES</string>
     <string name="hike_not_created">Hike not created, please try again</string>
-    <string name="search_location">Search location</string>
+    <string name="search_hike_name">Search hike name</string>
     <string name="no_hike_created">No Hike created</string>
     <string name="hike_created_successfully">Hike created Successfully</string>
     <string name="confirm_details">Confirm details</string>
     <string name="separator">\u0020 | \u0020</string>
+    <string name="hike_distance">Distance</string>
+    <string name="home">Home</string>
+    <string name="favourite">Favourite</string>
+    <string name="observation">Observation</string>
+    <string name="add_observation">Add</string>
+    <string name="add_observation2">Add Observation</string>
+    <string name="delete_all_observation">Delete all</string>
+    <string name="additional_comment">Additional comment</string>
+    <string name="cancel">Cancel</string>
+    <string name="click_icon">Click icon to add image</string>
+    <string name="camera_icon">Camera icon</string>
+    <string name="observation_not_created">Observation not added, please try again</string>
+    <string name="observation_added">Observation added</string>
+    <string name="delete_unsuccessful">Unsuccessful, please try again.</string>
+    <string name="hike_deleted">Hike Deleted</string>
+    <string name="hike">Hike</string>
+    <string name="hike_not_updated">Update failed, please try agian</string>
+    <string name="hike_update_successfully">Update successfully</string>
+    <string name="update">Update</string>
 
     <string-array name="purpose_of_hike">
         <item>Charity</item>

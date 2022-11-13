@@ -70,6 +70,7 @@ public class DatabaseConnection extends SQLiteOpenHelper {
         contentValues.put(Constants.FIRST_TABLE_COLUM_8, hike.getNumberOfPersons());
         contentValues.put(Constants.FIRST_TABLE_COLUM_9, hike.getParkingAvailable());
         contentValues.put(Constants.FIRST_TABLE_COLUM_10, hike.getCamping());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_10, hike.getImageURL());
 
         return db.insert(Constants.FIRST_TABLE_NAME, null, contentValues);
     }
@@ -82,13 +83,13 @@ public class DatabaseConnection extends SQLiteOpenHelper {
         contentValues.put(Constants.SECOND_TABLE_COLUM_2, observation.getObservation());
         contentValues.put(Constants.SECOND_TABLE_COLUM_3, observation.getTime());
         contentValues.put(Constants.SECOND_TABLE_COLUM_4, observation.getAdditionalComment());
-        contentValues.put(Constants.SECOND_TABLE_COLUM_4, observation.getHikeObservationImage());
+        contentValues.put(Constants.SECOND_TABLE_COLUM_5, observation.getHikeObservationImage());
 
         return db.insert(Constants.SECOND_TABLE_NAME, null, contentValues);
     }
 
-    public Cursor getAllData() {
-        String query = Constants.GET_ALL_DATA_FROM_FIRST_TABLE + Constants.FIRST_TABLE_NAME;
+    public Cursor getAllHikes() {
+        String query = Constants.SELECT_ALL_QUERY + Constants.FIRST_TABLE_NAME;
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = null;
@@ -96,6 +97,55 @@ public class DatabaseConnection extends SQLiteOpenHelper {
             cursor = db.rawQuery(query, null);
         }
         return cursor;
+    }
+
+    public Cursor getObservations(int id) {
+        String tempString = " WHERE " + Constants.SECOND_TABLE_COLUM_1 + " = " + id;
+        String query = Constants.SELECT_ALL_QUERY + Constants.SECOND_TABLE_NAME + tempString;
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = null;
+        if (db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    public long updateHike(Hike hike) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+//        contentValues.put(Constants.FIRST_TABLE_COLUM_1, hike.getId());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_2, hike.getHikeName());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_3, hike.getLocation());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_4, hike.getDate());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_5, hike.getDistance());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_6, hike.getPurposeOfHike());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_7, hike.getDescription());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_8, hike.getNumberOfPersons());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_9, hike.getParkingAvailable());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_10, hike.getCamping());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_10, hike.getImageURL());
+
+        long result = db.update(Constants.FIRST_TABLE_NAME, contentValues,
+                Constants.FIRST_TABLE_COLUM_1.concat("=?"), new String[]{String.valueOf(hike.getId())});
+
+        return result;
+    }
+
+    public long deleteHike(String id) {
+//        String tempString = " WHERE " + Constants.FIRST_TABLE_COLUM_1 + " = " + id;
+//        String query = Constants.DELETE_QUERY + Constants.FIRST_TABLE_NAME + tempString;
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(Constants.FIRST_TABLE_NAME, Constants.FIRST_TABLE_COLUM_1.concat("=?"), new String[]{id});
+
+        return result;
+    }
+
+    public void deleteAllHikes(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(Constants.DELETE_QUERY + Constants.FIRST_TABLE_NAME);
+        db.execSQL(Constants.DELETE_QUERY + Constants.SECOND_TABLE_NAME);
     }
 }
 

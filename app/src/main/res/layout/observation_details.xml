@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:layout_margin="@dimen/obj_10"
+    android:padding="@dimen/obj_10">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/observationTextOutline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/observation"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/observationText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:fontFamily="@font/gilroymedium"
+            android:textColor="@color/blackText"
+            android:textSize="@dimen/textSize_20" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/additionalCommentOutline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/obj_10"
+        android:hint="@string/additional_comment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/observationTextOutline">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/additionalComment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:fontFamily="@font/gilroymedium"
+            android:inputType="textMultiLine"
+            android:maxHeight="100dp"
+            android:maxLength="500"
+            android:maxLines="10"
+            android:textColor="@color/blackText"
+            android:textSize="@dimen/textSize_20" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/cameraIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/additionalCommentOutline"
+        app:layout_constraintStart_toEndOf="@+id/addImageLabel"
+        android:layout_marginTop="@dimen/obj_15"
+        android:layout_marginStart="@dimen/obj_16"
+        android:src="@drawable/ic_camera"
+        android:contentDescription="@string/camera_icon"
+        />
+
+    <TextView
+        android:id="@+id/addImageLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/additionalCommentOutline"
+        android:layout_marginTop="@dimen/obj_15"
+        android:text="@string/click_icon"
+        android:fontFamily="@font/gilroymedium"
+        android:textSize="@dimen/textSize_16"/>
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/obj_1_5"
+        app:layout_constraintTop_toBottomOf="@+id/addImageLabel"
+        android:layout_marginTop="@dimen/obj_25"
+        android:background="@color/teal_200_tint"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        app:layout_constraintTop_toBottomOf="@+id/line1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/obj_25"
+        android:padding="@dimen/obj_5">
+
+<!--        <Button-->
+<!--            android:id="@+id/cancelBtn"-->
+<!--            android:layout_width="@dimen/obj_0"-->
+<!--            android:layout_height="@dimen/obj_48"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_marginStart="@dimen/obj_24"-->
+<!--            android:layout_marginEnd="@dimen/obj_8"-->
+<!--            android:background="#000"-->
+<!--            android:elevation="@dimen/obj_2"-->
+<!--            android:fontFamily="@font/gilroysemibold"-->
+<!--            android:text="@string/cancel"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/whiteTextColor"-->
+<!--            android:textSize="@dimen/textSize_20"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/parkingAvalRadioGroup" />-->
+
+        <TextView
+            android:id="@+id/cancelBtn"
+            style="@android:style/Widget.Material.Button"
+            android:layout_width="@dimen/obj_0"
+            android:layout_height="@dimen/obj_50"
+            android:layout_marginStart="@dimen/obj_24"
+            android:layout_marginEnd="@dimen/obj_8"
+            android:layout_marginBottom="@dimen/obj_5"
+            android:layout_weight="1"
+            android:background="@drawable/negative_button_background"
+            android:elevation="@dimen/obj_3"
+            android:fontFamily="@font/gilroysemibold"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textSize="@dimen/textSize_18"
+            android:textColor="@color/delete"/>
+
+        <Button
+            android:id="@+id/saveObservationBtn"
+            style="@android:style/Widget.Material.Button"
+            android:layout_width="@dimen/obj_0"
+            android:layout_height="@dimen/obj_50"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/obj_8"
+            android:layout_marginEnd="@dimen/obj_24"
+            android:layout_marginBottom="@dimen/obj_5"
+            android:background="@drawable/positive_button_background"
+            android:elevation="@dimen/obj_2"
+            android:fontFamily="@font/gilroysemibold"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/whiteTextColor"
+            android:textSize="@dimen/textSize_18"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/parkingAvalRadioGroup" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

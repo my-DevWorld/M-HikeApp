@@ -13,7 +13,7 @@
         android:layout_marginStart="@dimen/obj_24"
         android:layout_marginTop="@dimen/obj_26"
         android:contentDescription="@string/back"
-        android:src="@drawable/ic_back_black"
+        android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -101,7 +101,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/dateOutline"
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/obj_0"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/obj_5"
                     android:layout_weight="1"
@@ -345,12 +345,12 @@
                 android:id="@+id/submitBtn"
                 style="@android:style/Widget.Material.Button"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/orange_background"
-                android:elevation="2dp"
+                android:layout_height="@dimen/obj_54"
+                android:layout_marginStart="@dimen/obj_24"
+                android:layout_marginTop="@dimen/obj_32"
+                android:layout_marginEnd="@dimen/obj_24"
+                android:background="@drawable/positive_button_background"
+                android:elevation="@dimen/obj_2"
                 android:fontFamily="@font/gilroysemibold"
                 android:text="@string/confirm"
                 android:textAllCaps="false"

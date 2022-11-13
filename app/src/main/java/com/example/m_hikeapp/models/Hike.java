@@ -16,10 +16,11 @@ public class Hike implements Parcelable {
     private String camping;
     private String imageURL;
 
-    public Hike(String hikeName, String location, String date,
+    public Hike(int id, String hikeName, String location, String date,
                 String distance, String purposeOfHike, String description,
                 String numberOfPersons, String parkingAvailable,
                 String camping, String imageURL) {
+        this.id = id;
         this.hikeName = hikeName;
         this.location = location;
         this.date = date;
@@ -32,6 +33,20 @@ public class Hike implements Parcelable {
         this.imageURL = imageURL;
     }
 
+    public Hike(String hikeName, String location, String date,
+                String distance, String purposeOfHike, String description,
+                String numberOfPersons, String parkingAvailable, String camping, String imageURL) {
+        this.hikeName = hikeName;
+        this.location = location;
+        this.date = date;
+        this.distance = distance;
+        this.purposeOfHike = purposeOfHike;
+        this.description = description;
+        this.numberOfPersons = numberOfPersons;
+        this.parkingAvailable = parkingAvailable;
+        this.camping = camping;
+        this.imageURL = imageURL;
+    }
 
     protected Hike(Parcel in) {
         id = in.readInt();
@@ -81,6 +96,10 @@ public class Hike implements Parcelable {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getHikeName() {

@@ -47,8 +47,9 @@ public class AddHike extends AppCompatActivity {
     private MaterialDatePicker materialDatePicker;
     private CalendarConstraints.Builder calendarConstraints;
 
-    private String purposeOfHike;
+    private String purposeOfHike, from;
     private Hike hike;
+    private Intent intent;
 
 
     @Override
@@ -60,8 +61,9 @@ public class AddHike extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(AddHikeViewModel.class);
 
 //        Get Data back from confirmation activity
-        Intent intent = getIntent();
-        String editDetails = intent.getStringExtra(Constants.EDIT_DETAILS_KEY);
+        intent = getIntent();
+        String editDetails = intent.getStringExtra(Constants.HIKE_DETAIL_KEY);
+        from = intent.getStringExtra(Constants.HIKE_DETAIL_KEY_FROM);
 
         init();
 
@@ -225,7 +227,25 @@ public class AddHike extends AppCompatActivity {
                     numbOfPersons.getText().toString(),
                     parkingAvalSelectedRadioButton.getText().toString(), camping, null);
 
-            viewModel.submitData(this, hike);
+            if (from != null){
+                hike = intent.getParcelableExtra(Constants.HIKE_DETAILS);
+                int id = Integer.valueOf(hike.getId());
+                String name = hikeName.getText().toString().trim();
+                String hikeLocation = location.getText().toString().trim();
+                String hikeDate = date.getText().toString().trim();
+                String hikeDistance = distance.getText().toString().trim();
+                String purpose = hikePurpose.getText().toString().trim();
+                String hikeDescription = description.getText().toString().trim();
+                String hikeNumbOfPersons = numbOfPersons.getText().toString().trim();
+                String hikeParking = parkingAvalSelectedRadioButton.getText().toString().trim();
+
+                hike = new Hike(id, name, hikeLocation, hikeDate, hikeDistance,
+                        purpose, hikeDescription, hikeNumbOfPersons, hikeParking, camping, null);
+
+                viewModel.submitData(this, hike, from);
+            }else {
+                viewModel.submitData(this, hike);
+            }
         }
     }
 
@@ -336,6 +356,12 @@ public class AddHike extends AppCompatActivity {
             date.setText(materialDatePicker.getHeaderText());
             // in the above statement, getHeaderText is the selected date preview from the dialog
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, Home.class));
+        finish();
     }
 }
 

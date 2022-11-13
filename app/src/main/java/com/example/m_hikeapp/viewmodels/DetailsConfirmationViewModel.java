@@ -35,4 +35,16 @@ public class DetailsConfirmationViewModel extends AndroidViewModel {
             activity.finish();
         }
     }
+
+    public void updateHike(Activity activity, Hike hike) {
+        if (dbConnection.updateHike(hike) == -1){
+            //TODO: spot progress bar
+            Snackbar.make(activity.findViewById(R.id.submitBtn), getApplication().getResources().getString(R.string.hike_not_updated), Snackbar.LENGTH_SHORT).show();
+        } else {
+            //TODO: spot progress bar
+            Toast.makeText(getApplication(), R.string.hike_update_successfully, Toast.LENGTH_SHORT).show();
+            activity.startActivity(new Intent(activity, Home.class));
+            activity.finish();
+        }
+    }
 }

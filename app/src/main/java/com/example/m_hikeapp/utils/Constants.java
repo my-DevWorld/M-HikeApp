@@ -2,7 +2,8 @@ package com.example.m_hikeapp.utils;
 
 public class Constants {
     public static boolean IS_FORM_VALID = false;
-    public static String EDIT_DETAILS_KEY;
+    public static String HIKE_DETAIL_KEY;
+    public static String HIKE_DETAIL_KEY_FROM;
     public static String HIKE_DETAILS = "Hike Details";
     public static final String DATABASE_NAME = "HikesRecords.db";
     public static final int DATABASE_VERSION = 1;
@@ -35,5 +36,8 @@ public class Constants {
     public static final String HIKE_THUMBNAIL5 = "https://images.app.goo.gl/s1e4R86UF1hqtpm17";
 
     //    Database queries
-    public static final String GET_ALL_DATA_FROM_FIRST_TABLE = "SELECT * FROM ";
+    public static final String SELECT_ALL_QUERY = "SELECT * FROM ";
+    public static final String DELETE_QUERY = "DELETE FROM ";
+
+    public static final String [] VIEW_CLICKED = {"image", "share", "edit"};
 }

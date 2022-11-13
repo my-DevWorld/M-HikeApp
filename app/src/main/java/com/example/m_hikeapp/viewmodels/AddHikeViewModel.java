@@ -26,4 +26,12 @@ public class AddHikeViewModel extends AndroidViewModel {
         activity.startActivity(intent);
         activity.finish();
     }
+
+    public void submitData(Activity activity, Hike hike, String from) {
+        Intent intent = new Intent(activity, DetailsConfirmation.class);
+        intent.putExtra(Constants.HIKE_DETAIL_KEY_FROM, from);
+        intent.putExtra(Constants.HIKE_DETAILS, hike);
+        activity.startActivity(intent);
+        activity.finish();
+    }
 }

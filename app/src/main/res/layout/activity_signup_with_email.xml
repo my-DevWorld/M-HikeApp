@@ -20,7 +20,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="29dp"
             android:layout_marginTop="26dp"
-            android:src="@drawable/ic_back_black"
+            android:src="@drawable/ic_back"
             android:contentDescription="@string/closewindow"
             />
 
@@ -132,7 +132,7 @@
             android:textSize="@dimen/textSize_15"
             android:textAllCaps="false"
             android:textColor="@color/whiteTextColor"
-            android:background="@drawable/orange_background"
+            android:background="@drawable/positive_button_background"
             android:fontFamily="@font/gilroysemibold"
             android:elevation="2dp"
             />

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/obj_8"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/observationName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/gilroysemibold"
+        tools:text="Observation Name"
+        android:textColor="@color/greyishBrown"
+        android:textSize="@dimen/textSize_18" />
+    <ImageView
+        android:id="@+id/editObservation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/deleteObservation"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/obj_24"
+        android:layout_marginEnd="@dimen/obj_16"
+        android:src="@drawable/ic_edit" />
+
+    <ImageView
+        android:id="@+id/deleteObservation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="@dimen/obj_8"
+        android:src="@drawable/ic_delete" />
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/obj_1_5"
+        app:layout_constraintTop_toBottomOf="@+id/deleteObservation"
+        android:layout_marginTop="@dimen/obj_8"
+        android:background="@color/teal_200_tint"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

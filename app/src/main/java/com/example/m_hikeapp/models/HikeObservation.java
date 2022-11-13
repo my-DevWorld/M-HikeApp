@@ -18,6 +18,13 @@ public class HikeObservation implements Parcelable {
         this.hikeObservationImage = hikeObservationImage;
     }
 
+    public HikeObservation(String observation, String time, String additionalComment, String hikeObservationImage) {
+        this.observation = observation;
+        this.time = time;
+        this.additionalComment = additionalComment;
+        this.hikeObservationImage = hikeObservationImage;
+    }
+
     protected HikeObservation(Parcel in) {
         id = in.readInt();
         observation = in.readString();

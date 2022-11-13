@@ -203,7 +203,7 @@
             android:layout_marginStart="@dimen/obj_24"
             android:layout_marginTop="@dimen/textSize_20"
             android:layout_marginEnd="@dimen/obj_24"
-            android:background="@drawable/orange_background"
+            android:background="@drawable/positive_button_background"
             android:focusable="true"
             android:fontFamily="@font/gilroysemibold"
             android:text="@string/log_in"

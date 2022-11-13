@@ -7,6 +7,12 @@
         <item name="postSplashScreenTheme">@style/Theme.MHike </item>
     </style>
 
+    <style name="CustomDialog" parent="MaterialAlertDialog.Material3">
+        <item name="android:windowNoTitle">false</item>
+<!--        <item name="android:background">@color/teal_200</item>-->
+
+    </style>
+
 <!--    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
 <!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
 <!--        <item name="colorPrimary">@color/colorPrimary</item>-->

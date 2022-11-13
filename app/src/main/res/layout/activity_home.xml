@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,6 +14,8 @@
         android:layout_marginStart="@dimen/obj_20"
         android:layout_marginTop="@dimen/obj_20"
         android:layout_marginEnd="@dimen/obj_20"
+
+        android:paddingStart="@dimen/obj_150"
         android:background="@drawable/edit_text_border_brown_grey"
         android:elevation="@dimen/obj_5"
         app:cardElevation="@dimen/obj_3"
@@ -35,131 +38,95 @@
                 android:layout_toStartOf="@+id/search_icon"
                 android:fontFamily="@font/gilroymedium"
                 android:gravity="center_vertical"
-                android:hint="@string/search_location"
+                android:hint="@string/search_hike_name"
                 android:textColor="@color/blackText"
                 android:textSize="@dimen/textSize_15" />
-
 
             <ImageView
                 android:id="@+id/search_icon"
                 android:layout_width="@dimen/obj_24"
                 android:layout_height="@dimen/obj_24"
-                android:layout_alignParentEnd="true"
+                android:layout_toStartOf="@+id/menu_icon"
                 android:layout_marginStart="@dimen/obj_20"
-                android:layout_marginEnd="@dimen/obj_16"
-                android:src="@drawable/ic_baseline_search_24" />
+                android:layout_marginEnd="@dimen/obj_8"
+                android:src="@drawable/ic_baseline_search_24"
+                android:contentDescription="@string/search_hike_name"/>
+
+            <ImageView
+                android:id="@+id/menu_icon"
+                android:layout_width="@dimen/obj_24"
+                android:layout_height="@dimen/obj_24"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/obj_8"
+                android:src="@drawable/ic_menu"
+                android:contentDescription="@string/search_hike_name"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-    <HorizontalScrollView
-        android:id="@+id/searchOptions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/obj_24"
-        android:layout_marginTop="@dimen/obj_10"
-        android:layout_marginEnd="@dimen/obj_24"
-        android:fillViewport="false"
-        android:measureAllChildren="false"
-        android:scrollbars="none"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar">
+<!--    <HorizontalScrollView-->
+<!--        android:id="@+id/searchOptions"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="@dimen/obj_24"-->
+<!--        android:layout_marginTop="@dimen/obj_10"-->
+<!--        android:layout_marginEnd="@dimen/obj_24"-->
+<!--        android:fillViewport="false"-->
+<!--        android:measureAllChildren="false"-->
+<!--        android:scrollbars="none"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/search_bar">-->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/obj_16">
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:paddingBottom="@dimen/obj_16">-->
 
-            <TextView
-                android:id="@+id/priceFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/obj_40"
-                android:background="@drawable/default_border"
-                android:fontFamily="@font/gilroymedium"
-                android:gravity="center"
-                android:paddingStart="@dimen/obj_8"
-                android:paddingLeft="@dimen/obj_8"
-                android:paddingEnd="@dimen/obj_8"
-                android:text="Price"
-                android:textColor="@color/greyishBrown"
-                android:textSize="@dimen/textSize_13" />
+<!--            <TextView-->
+<!--                android:id="@+id/locationFilter"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="@dimen/obj_40"-->
+<!--                android:background="@drawable/default_border"-->
+<!--                android:fontFamily="@font/gilroymedium"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingStart="@dimen/obj_8"-->
+<!--                android:paddingEnd="@dimen/obj_8"-->
+<!--                android:text="@string/hike_location"-->
+<!--                android:textColor="@color/greyishBrown"-->
+<!--                android:textSize="@dimen/textSize_13"-->
+<!--                />-->
 
-            <TextView
-                android:id="@+id/type_of_propertyFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/obj_40"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/default_border"
-                android:fontFamily="@font/gilroymedium"
-                android:gravity="center"
-                android:paddingStart="8dp"
-                android:paddingLeft="8dp"
-                android:paddingEnd="8dp"
-                android:text="Type of property"
-                android:textColor="@color/greyishBrown"
-                android:textSize="@dimen/textSize_13" />
+<!--            <TextView-->
+<!--                android:id="@+id/dateFilter"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="@dimen/obj_40"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:background="@drawable/default_border"-->
+<!--                android:fontFamily="@font/gilroymedium"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingStart="@dimen/obj_8"-->
+<!--                android:paddingEnd="@dimen/obj_8"-->
+<!--                android:text="@string/hike_date"-->
+<!--                android:textColor="@color/greyishBrown"-->
+<!--                android:textSize="@dimen/textSize_13"-->
+<!--                />-->
 
-            <TextView
-                android:id="@+id/landLordPresentFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/obj_40"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/default_border"
-                android:fontFamily="@font/gilroymedium"
-                android:gravity="center"
-                android:paddingStart="8dp"
-                android:paddingLeft="8dp"
-                android:paddingEnd="8dp"
-                android:text="Landlord Present"
-                android:textColor="@color/greyishBrown"
-                android:textSize="@dimen/textSize_13" />
-
-            <TextView
-                android:id="@+id/facilitiesFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/obj_40"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/default_border"
-                android:fontFamily="@font/gilroymedium"
-                android:gravity="center"
-                android:paddingStart="8dp"
-                android:paddingLeft="8dp"
-                android:paddingEnd="8dp"
-                android:text="Facilities"
-                android:textColor="@color/greyishBrown"
-                android:textSize="@dimen/textSize_13" />
-
-            <TextView
-                android:id="@+id/paymentPlanFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/obj_40"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/default_border"
-                android:fontFamily="@font/gilroymedium"
-                android:gravity="center"
-                android:paddingStart="8dp"
-                android:paddingLeft="8dp"
-                android:paddingEnd="8dp"
-                android:text="Payment terms"
-                android:textColor="@color/greyishBrown"
-                android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/datePublishFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/obj_40"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/default_border"
-                android:fontFamily="@font/gilroymedium"
-                android:gravity="center"
-                android:paddingStart="8dp"
-                android:paddingLeft="8dp"
-                android:paddingEnd="8dp"
-                android:text="Date uploaded"
-                android:textColor="@color/greyishBrown"
-                android:textSize="13sp" />
-        </LinearLayout>
-    </HorizontalScrollView>
+<!--            <TextView-->
+<!--                android:id="@+id/distanceFilter"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="@dimen/obj_40"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:background="@drawable/default_border"-->
+<!--                android:fontFamily="@font/gilroymedium"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingStart="@dimen/obj_8"-->
+<!--                android:paddingEnd="@dimen/obj_8"-->
+<!--                android:text="@string/hike_distance"-->
+<!--                android:textColor="@color/greyishBrown"-->
+<!--                android:textSize="@dimen/textSize_13"-->
+<!--                />-->
+<!--        </LinearLayout>-->
+<!--    </HorizontalScrollView>-->
 
     <ImageView
         android:id="@+id/emptyState"
@@ -170,7 +137,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/no_hike_created"/>
 
     <TextView
         android:id="@+id/emptyStateText"
@@ -191,35 +159,55 @@
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/obj_12"
         android:layout_marginStart="@dimen/obj_15"
         android:layout_marginEnd="@dimen/obj_15"
-        android:layout_marginBottom="1dp"
-        android:paddingTop="@dimen/obj_12"
         android:visibility="visible"
+        android:overScrollMode="never"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchOptions">
+        app:layout_constraintTop_toBottomOf="@+id/search_bar">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/hikeRecyclerView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/hike_details" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/hikeRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/hike_details"
+                android:layout_marginBottom="@dimen/obj_50"
+                />
+            <TextView
+                android:id="@+id/deleteAllHikes"
+                style="@android:style/Widget.Material.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/obj_50"
+                android:layout_marginTop="@dimen/obj_5"
+                android:fontFamily="@font/gilroysemibold"
+                android:padding="@dimen/obj_10"
+                android:text="Delete all hikes"
+                android:textSize="@dimen/textSize_20"
+                android:visibility="visible"
+                android:layout_gravity="center"
+                android:background="@drawable/negative_button_background"
+                android:textColor="@color/delete"
+                android:textAllCaps="false"
+                android:elevation="@dimen/obj_3"/>
 
-<!--        <View-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="@dimen/obj_150"-->
-<!--            android:layout_marginBottom="@dimen/obj_150"-->
-<!--            android:paddingBottom="@dimen/obj_150"-->
-<!--            app:layout_constraintStart_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/obj_150"
+                android:layout_marginTop="100dp"
+                />
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
+        android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/obj_24"
         android:layout_marginBottom="@dimen/obj_24"
         android:contentDescription="@string/fab_content_desc"
@@ -232,21 +220,22 @@
         app:shapeAppearanceOverlay="@drawable/fab_background"
         app:srcCompat="@drawable/ic_plus_24" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/whiteTextColor"
-        app:itemIconSize="@dimen/obj_24"
-        app:itemIconTint="@drawable/bottom_navigation_item_colors"
-        app:itemRippleColor="@color/brownishGreyTwo"
-        app:itemTextAppearanceActive="@font/gilroymedium"
-        app:itemTextAppearanceInactive="@font/gilroylight"
-        app:itemTextColor="@drawable/bottom_navigation_item_colors"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_menu" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/whiteTextColor"
+            app:itemIconSize="@dimen/obj_24"
+            app:itemIconTint="@drawable/bottom_navigation_item_colors"
+            app:itemRippleColor="@color/brownishGreyTwo"
+            app:itemTextAppearanceActive="@font/gilroymedium"
+            app:itemTextAppearanceInactive="@font/gilroylight"
+            app:itemTextColor="@drawable/bottom_navigation_item_colors"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_navigation_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

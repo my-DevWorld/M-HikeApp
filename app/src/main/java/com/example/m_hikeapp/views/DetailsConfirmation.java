@@ -14,8 +14,6 @@ import com.example.m_hikeapp.utils.Constants;
 import com.example.m_hikeapp.viewmodels.DetailsConfirmationViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 
-import org.checkerframework.common.subtyping.qual.Bottom;
-
 public class DetailsConfirmation extends AppCompatActivity {
 
     private DetailsConfirmationViewModel viewModel;
@@ -25,6 +23,8 @@ public class DetailsConfirmation extends AppCompatActivity {
     private Button submitBtn;
 
     private Hike hike;
+    private String from;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,8 @@ public class DetailsConfirmation extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this).get(DetailsConfirmationViewModel.class);
 
-        Intent intent = getIntent();
+        intent = getIntent();
+        from = intent.getStringExtra(Constants.HIKE_DETAIL_KEY_FROM);
         hike = intent.getParcelableExtra(Constants.HIKE_DETAILS);
         init();
     }
@@ -51,7 +52,10 @@ public class DetailsConfirmation extends AppCompatActivity {
         parking = findViewById(R.id.parking);
         submitBtn = findViewById(R.id.submitBtn);
 
-
+        if (from != null){
+            hike = intent.getParcelableExtra(Constants.HIKE_DETAILS);
+            submitBtn.setText(getString(R.string.update));
+        }
         hikeName.setText(hike.getHikeName());
         location.setText(hike.getLocation());
         date.setText(hike.getDate());
@@ -67,7 +71,23 @@ public class DetailsConfirmation extends AppCompatActivity {
         });
 
         submitBtn.setOnClickListener(view -> {
-            viewModel.insertHike(this, hike);
+            if (from != null){
+                hike = intent.getParcelableExtra(Constants.HIKE_DETAILS);
+                String name = hikeName.getText().toString().trim();
+                String hikeLocation = location.getText().toString().trim();
+                String hikeDate = date.getText().toString().trim();
+                String hikeDistance = distance.getText().toString().trim();
+                String purpose = hikePurpose.getText().toString().trim();
+                String hikeDescription = description.getText().toString().trim();
+                String hikeNumbOfPersons = numbOfPersons.getText().toString().trim();
+                String hikeCamping = camping.getText().toString().trim();
+                String hikeParking = parking.getText().toString().trim();
+                hike = new Hike(Integer.valueOf(hike.getId()), name, hikeLocation, hikeDate, hikeDistance,
+                        purpose, hikeDescription, hikeNumbOfPersons, hikeParking, hikeCamping, null);
+                viewModel.updateHike(this, hike);
+            }else {
+                viewModel.insertHike(this, hike);
+            }
         });
     }
 
@@ -75,7 +95,7 @@ public class DetailsConfirmation extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(this, AddHike.class);
         String editDetails = getString(R.string.yes_caps);
-        intent.putExtra(Constants.EDIT_DETAILS_KEY, editDetails);
+        intent.putExtra(Constants.HIKE_DETAIL_KEY, editDetails);
         intent.putExtra(Constants.HIKE_DETAILS, hike);
         startActivity(intent);
         finish();

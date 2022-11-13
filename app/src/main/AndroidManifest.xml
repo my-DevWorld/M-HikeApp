@@ -19,6 +19,13 @@
         android:theme="@style/Theme.MHike"
         tools:targetApi="31">
         <activity
+            android:name=".views.HikeDetails"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".views.DetailsConfirmation"
             android:exported="false">
             <meta-data
