@@ -84,7 +84,7 @@ public class Home extends AppCompatActivity implements HikeAdapter.ItemClickList
 //        Observer for Hikes mutableData
         viewModel.getHikeObserver().observe(this, hikes -> {
             adapter.setHikeArrayList(hikes);
-            HikePayload hikePayload = new HikePayload("wm123",hikes, 0);
+            HikePayload hikePayload = new HikePayload("vw3877a",hikes, 0);
             String gson = new Gson().toJson(hikePayload);
             uploadToCloud(hikePayload);
         });

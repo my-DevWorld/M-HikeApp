@@ -105,7 +105,11 @@ public class Login extends AppCompatActivity {
             loginBtn.requestFocus();
             loginBtn.setFocusable(true);
             loginPassword.clearFocus();
-            formValidation();
+//            formValidation();
+            Intent intent = new Intent(this, Home.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         });
 
         google_btn.setOnClickListener(v -> {

@@ -9,13 +9,13 @@ import java.util.ArrayList;
 
 public class HikePayload implements Parcelable {
     @SerializedName("userId")
-    private String userID;
+    private String userID = "wm123";
     @SerializedName("detailList")
     private ArrayList<Hike> userArrayList;
 //    private int total;
 
     public HikePayload(String userID, ArrayList<Hike> userArrayList, int total) {
-//        this.userID = userID;
+        this.userID = userID;
         this.userArrayList = userArrayList;
 //        this.total = total;
     }
