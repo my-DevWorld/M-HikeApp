@@ -24,8 +24,10 @@ public class DatabaseConnection extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 //        Create Hike table in sqlite
-        String query = "CREATE TABLE " + Constants.FIRST_TABLE_NAME
-                + " (" + Constants.FIRST_TABLE_COLUM_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+        String query = "CREATE TABLE "
+                + Constants.FIRST_TABLE_NAME
+                + " (" + Constants.FIRST_TABLE_COLUM_1
+                + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + Constants.FIRST_TABLE_COLUM_2 + " TEXT, "
                 + Constants.FIRST_TABLE_COLUM_3 + " TEXT, "
                 + Constants.FIRST_TABLE_COLUM_4 + " TEXT, "

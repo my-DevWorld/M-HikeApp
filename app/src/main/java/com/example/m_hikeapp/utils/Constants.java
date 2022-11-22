@@ -10,6 +10,8 @@ public class Constants {
     public static final String FIRST_TABLE_NAME = "hike_details";
     public static final String SECOND_TABLE_NAME = "hike_observation";
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//    Strings for creating hike table
     public static final String FIRST_TABLE_COLUM_1 = "id";
     public static final String FIRST_TABLE_COLUM_2 = "hike_name";
     public static final String FIRST_TABLE_COLUM_3 = "hike_location";
@@ -21,7 +23,9 @@ public class Constants {
     public static final String FIRST_TABLE_COLUM_9 = "hike_parking_available";
     public static final String FIRST_TABLE_COLUM_10 = "hike_camping";
     public static final String FIRST_TABLE_COLUM_11 = "hike_thumbnail";
+////////////////////////////////////////////////////////////////////////////////////////////////
 
+//    Strings for creating hike observation table
     public static final String SECOND_TABLE_COLUM_1 = "id";
     public static final String SECOND_TABLE_COLUM_2 = "hike_observation";
     public static final String SECOND_TABLE_COLUM_3 = "hike_time";
@@ -40,4 +44,8 @@ public class Constants {
     public static final String DELETE_QUERY = "DELETE FROM ";
 
     public static final String [] VIEW_CLICKED = {"image", "share", "edit"};
+
+    public static final String BASE_URL = "https://stuiis.cms.gre.ac.uk/";
+    public static final String USER_ID = "userId";
+    public static final String HIKE_DETAILS_LIST = "detailList";
 }

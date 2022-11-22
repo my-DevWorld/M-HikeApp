@@ -11,19 +11,27 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.m_hikeapp.adapters.HikeAdapter;
 import com.example.m_hikeapp.R;
+import com.example.m_hikeapp.httpnetwork.MHikeRetrofitClient;
 import com.example.m_hikeapp.models.Hike;
+import com.example.m_hikeapp.models.HikePayload;
+import com.example.m_hikeapp.models.HikeResponsePayload;
 import com.example.m_hikeapp.sqlite.DatabaseConnection;
 import com.example.m_hikeapp.utils.Constants;
 import com.example.m_hikeapp.viewmodels.HomeViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Home extends AppCompatActivity implements HikeAdapter.ItemClickListener {
 
@@ -76,6 +84,9 @@ public class Home extends AppCompatActivity implements HikeAdapter.ItemClickList
 //        Observer for Hikes mutableData
         viewModel.getHikeObserver().observe(this, hikes -> {
             adapter.setHikeArrayList(hikes);
+            HikePayload hikePayload = new HikePayload("wm123",hikes, 0);
+            String gson = new Gson().toJson(hikePayload);
+            uploadToCloud(hikePayload);
         });
         nestedScrollView.setNestedScrollingEnabled(false);
 
@@ -129,5 +140,50 @@ public class Home extends AppCompatActivity implements HikeAdapter.ItemClickList
         builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
         });
         builder.create().show();
+    }
+
+    private void uploadToCloud(HikePayload hikePayload) {
+//        Call<String> uploadHikes = MHikeRetrofitClient.getInstance()
+//                .getMHikeRestApi().uploadToCloud(hikePayload);
+//        uploadHikes.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                String data = response.body();
+//                System.out.println("==================================================================");
+//                System.out.println("======================>>>>>>>" + data);
+//                System.out.println("==================================================================");
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//
+//            }
+//        });
+
+        Call<ResponseBody> uploadHikes = MHikeRetrofitClient.getInstance()
+                .getMHikeRestApi().uploadToCloud(hikePayload);
+        uploadHikes.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                ResponseBody data = response.body();
+                if (response.isSuccessful()){
+                    System.out.println("==================================================================");
+                    System.out.println("======================>>>>>>>" + data);
+                    System.out.println("==================================================================");
+                }
+                else {
+                    System.out.println("==================================================================");
+                    System.out.println("======================>>>>>>>" + data);
+                    System.out.println("==================================================================");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                System.out.println("==================================================================");
+                System.out.println("======================>>>>>>>" + t.getLocalizedMessage());
+                System.out.println("==================================================================");
+            }
+        });
     }
 }

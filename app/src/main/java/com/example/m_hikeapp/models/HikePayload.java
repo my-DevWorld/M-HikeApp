@@ -3,26 +3,39 @@ package com.example.m_hikeapp.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 public class HikePayload implements Parcelable {
+    @SerializedName("userId")
+    private String userID;
+    @SerializedName("detailList")
     private ArrayList<Hike> userArrayList;
-    private int total;
+//    private int total;
 
-    public HikePayload(ArrayList<Hike> userArrayList, int total) {
+    public HikePayload(String userID, ArrayList<Hike> userArrayList, int total) {
+//        this.userID = userID;
         this.userArrayList = userArrayList;
-        this.total = total;
+//        this.total = total;
+    }
+
+    public HikePayload(String userID, ArrayList<Hike> userArrayList) {
+//        this.userID = userID;
+        this.userArrayList = userArrayList;
     }
 
     protected HikePayload(Parcel in) {
+//        userID = in.readString();
         userArrayList = in.createTypedArrayList(Hike.CREATOR);
-        total = in.readInt();
+//        total = in.readInt();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+//        dest.writeString(userID);
         dest.writeTypedList(userArrayList);
-        dest.writeInt(total);
+//        dest.writeInt(total);
     }
 
     @Override
@@ -42,19 +55,15 @@ public class HikePayload implements Parcelable {
         }
     };
 
+//    public String getUserID() {
+//        return userID;
+//    }
+
     public ArrayList<Hike> getUserArrayList() {
         return userArrayList;
     }
 
-    public void setUserArrayList(ArrayList<Hike> userArrayList) {
-        this.userArrayList = userArrayList;
-    }
-
-    public int getTotal() {
-        return total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
-    }
+//    public int getTotal() {
+//        return total;
+//    }
 }
