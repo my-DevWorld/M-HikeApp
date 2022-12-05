@@ -19,12 +19,13 @@ public class DetailsConfirmation extends AppCompatActivity {
     private DetailsConfirmationViewModel viewModel;
 
     private TextInputEditText hikeName, location, date, distance, hikePurpose, description, numbOfPersons;
-    private TextView editLabel, camping, parking;
+    private TextView editLabel, camping, parking, difficultLevelLabel;
     private Button submitBtn;
 
     private Hike hike;
     private String from;
     private Intent intent;
+    private int hikeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class DetailsConfirmation extends AppCompatActivity {
         intent = getIntent();
         from = intent.getStringExtra(Constants.HIKE_DETAIL_KEY_FROM);
         hike = intent.getParcelableExtra(Constants.HIKE_DETAILS);
+        hikeId = hike.getId();
         init();
     }
 
@@ -51,11 +53,9 @@ public class DetailsConfirmation extends AppCompatActivity {
         camping = findViewById(R.id.camping);
         parking = findViewById(R.id.parking);
         submitBtn = findViewById(R.id.submitBtn);
+        difficultLevelLabel = findViewById(R.id.difficultLevelLabel);
 
-        if (from != null){
-            hike = intent.getParcelableExtra(Constants.HIKE_DETAILS);
-            submitBtn.setText(getString(R.string.update));
-        }
+//      Setting hike details to the views
         hikeName.setText(hike.getHikeName());
         location.setText(hike.getLocation());
         date.setText(hike.getDate());
@@ -65,27 +65,21 @@ public class DetailsConfirmation extends AppCompatActivity {
         numbOfPersons.setText(hike.getNumberOfPersons());
         camping.setText(hike.getCamping());
         parking.setText(hike.getParkingAvailable());
+        difficultLevelLabel.setText(String.format("%s%s", getString(R.string.difficulty_level1), hike.getHikeDifficultyLevel()));
 
         editLabel.setOnClickListener(v -> {
             onBackPressed();
         });
 
+        if (hikeId != 0){
+            submitBtn.setText(getString(R.string.update));
+        }
+
         submitBtn.setOnClickListener(view -> {
-            if (from != null){
-                hike = intent.getParcelableExtra(Constants.HIKE_DETAILS);
-                String name = hikeName.getText().toString().trim();
-                String hikeLocation = location.getText().toString().trim();
-                String hikeDate = date.getText().toString().trim();
-                String hikeDistance = distance.getText().toString().trim();
-                String purpose = hikePurpose.getText().toString().trim();
-                String hikeDescription = description.getText().toString().trim();
-                String hikeNumbOfPersons = numbOfPersons.getText().toString().trim();
-                String hikeCamping = camping.getText().toString().trim();
-                String hikeParking = parking.getText().toString().trim();
-                hike = new Hike(Integer.valueOf(hike.getId()), name, hikeLocation, hikeDate, hikeDistance,
-                        purpose, hikeDescription, hikeNumbOfPersons, hikeParking, hikeCamping, null);
+            if (submitBtn.getText().toString().trim().equals(getString(R.string.update))){
                 viewModel.updateHike(this, hike);
-            }else {
+            }
+            else {
                 viewModel.insertHike(this, hike);
             }
         });

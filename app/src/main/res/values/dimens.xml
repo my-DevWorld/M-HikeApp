@@ -45,4 +45,9 @@
     <dimen name="obj_32">32dp</dimen>
     <dimen name="obj_2">2dp</dimen>
     <dimen name="obj_48">48dp</dimen>
+    <dimen name="obj_104">104dp</dimen>
+    <dimen name="obj_61">61dp</dimen>
+    <dimen name="obj_1">1dp</dimen>
+    <dimen name="obj_4">4dp</dimen>
+    <dimen name="obj_100">100dp</dimen>
 </resources>

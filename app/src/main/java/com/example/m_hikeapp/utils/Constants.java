@@ -23,6 +23,8 @@ public class Constants {
     public static final String FIRST_TABLE_COLUM_9 = "hike_parking_available";
     public static final String FIRST_TABLE_COLUM_10 = "hike_camping";
     public static final String FIRST_TABLE_COLUM_11 = "hike_thumbnail";
+    public static final String FIRST_TABLE_COLUM_12 = "hike_difficulty_level";
+    public static final String FIRST_TABLE_COLUM_13 = "hike_saved";
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 //    Strings for creating hike observation table
@@ -48,4 +50,17 @@ public class Constants {
     public static final String BASE_URL = "https://stuiis.cms.gre.ac.uk/";
     public static final String USER_ID = "userId";
     public static final String HIKE_DETAILS_LIST = "detailList";
+
+    public static final int NETWORK_TIMEOUT = 60;
+
+    public static final int LOW_DIFFICULTY_LEVEL = 5;
+    public static final int MEDIUM_DIFFICULTY_LEVEL = 10;
+
+    public static final String DIFFICULTY_LEVEL1 = "Low";
+    public static final String DIFFICULTY_LEVEL2 = "Medium";
+    public static final String DIFFICULTY_LEVEL3 = "High";
+
+    public static final int CAMERA_REQUEST = 505;
+    public static final int CHECK_CAMERA_REQUEST = 101;
+    public static final int CHECK_LOCATION_REQUEST = 102;
 }

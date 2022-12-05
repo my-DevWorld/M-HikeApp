@@ -3,35 +3,19 @@ package com.example.m_hikeapp.viewmodels;
 import static android.content.ContentValues.TAG;
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.Toast;
-
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
-
 import com.example.m_hikeapp.R;
 import com.example.m_hikeapp.utils.FireBaseAuth;
 import com.example.m_hikeapp.views.Home;
-import com.google.android.gms.auth.api.identity.BeginSignInRequest;
-import com.google.android.gms.auth.api.identity.BeginSignInResult;
-import com.google.android.gms.auth.api.identity.Identity;
-import com.google.android.gms.auth.api.identity.SignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -70,7 +54,7 @@ public class SignInSignUpWithEmailViewModel extends AndroidViewModel {
                             // Signup success
                             FirebaseUser user = mAuth.getCurrentUser();
                             activity.findViewById(R.id.progressContainer).setVisibility(View.GONE);
-                            Toast.makeText(activity, "Sign up successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, activity.getString(R.string.sign_up_successful), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(activity, Home.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             activity.startActivity(intent);

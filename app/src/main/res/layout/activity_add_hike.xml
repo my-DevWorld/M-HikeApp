@@ -161,14 +161,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/difficultLevelLabel">
 
                 <View
-                    android:layout_width="0dp"
+                    android:id="@+id/levelIndicator1"
+                    android:layout_width="@dimen/obj_0"
                     android:layout_height="@dimen/obj_5"
                     android:layout_marginEnd="1.5dp"
                     android:layout_weight="1"
                     android:background="@color/brownishGreyTwo" />
 
                 <View
-                    android:layout_width="0dp"
+                    android:id="@+id/levelIndicator2"
+                    android:layout_width="@dimen/obj_0"
                     android:layout_height="@dimen/obj_5"
                     android:layout_marginStart="1.5dp"
                     android:layout_marginEnd="1.5dp"
@@ -176,20 +178,14 @@
                     android:background="@color/brownishGreyTwo" />
 
                 <View
-                    android:layout_width="0dp"
+                    android:id="@+id/levelIndicator3"
+                    android:layout_width="@dimen/obj_0"
                     android:layout_height="@dimen/obj_5"
                     android:layout_marginStart="1.5dp"
                     android:layout_marginEnd="1.5dp"
                     android:layout_weight="1"
                     android:background="@color/brownishGreyTwo" />
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/obj_5"
-                    android:layout_marginStart="1.5dp"
-                    android:layout_marginEnd="1.5dp"
-                    android:layout_weight="1"
-                    android:background="@color/brownishGreyTwo" />
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -200,7 +196,6 @@
                 android:layout_marginStart="@dimen/obj_24"
                 android:layout_marginTop="@dimen/obj_10"
                 android:layout_marginEnd="@dimen/obj_24"
-                android:background="@color/white"
                 android:hint="@string/hike_purpose"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/strengthIndicator">
@@ -210,7 +205,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/textSize_20"
-                    android:background="@color/white"
                     android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -367,6 +361,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/submitBtn" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

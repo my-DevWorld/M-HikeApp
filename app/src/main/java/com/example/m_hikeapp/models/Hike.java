@@ -15,11 +15,13 @@ public class Hike implements Parcelable {
     private String parkingAvailable;
     private String camping;
     private String imageURL;
+    private String hikeDifficultyLevel;
+    private int hikeSaved;
 
-    public Hike(int id, String hikeName, String location, String date,
-                String distance, String purposeOfHike, String description,
-                String numberOfPersons, String parkingAvailable,
-                String camping, String imageURL) {
+    public Hike(int id, String hikeName, String location, String date, String distance,
+                String purposeOfHike, String description, String numberOfPersons,
+                String parkingAvailable, String camping, String imageURL,
+                String hikeDifficultyLevel, int hikeSaved) {
         this.id = id;
         this.hikeName = hikeName;
         this.location = location;
@@ -31,11 +33,14 @@ public class Hike implements Parcelable {
         this.parkingAvailable = parkingAvailable;
         this.camping = camping;
         this.imageURL = imageURL;
+        this.hikeDifficultyLevel = hikeDifficultyLevel;
+        this.hikeSaved = hikeSaved;
     }
 
-    public Hike(String hikeName, String location, String date,
-                String distance, String purposeOfHike, String description,
-                String numberOfPersons, String parkingAvailable, String camping, String imageURL) {
+    public Hike(String hikeName, String location, String date, String distance,
+                String purposeOfHike, String description, String numberOfPersons,
+                String parkingAvailable, String camping, String imageURL,
+                String hikeDifficultyLevel, int hikeSaved) {
         this.hikeName = hikeName;
         this.location = location;
         this.date = date;
@@ -46,6 +51,8 @@ public class Hike implements Parcelable {
         this.parkingAvailable = parkingAvailable;
         this.camping = camping;
         this.imageURL = imageURL;
+        this.hikeDifficultyLevel = hikeDifficultyLevel;
+        this.hikeSaved = hikeSaved;
     }
 
     protected Hike(Parcel in) {
@@ -60,6 +67,8 @@ public class Hike implements Parcelable {
         parkingAvailable = in.readString();
         camping = in.readString();
         imageURL = in.readString();
+        hikeDifficultyLevel = in.readString();
+        hikeSaved = in.readInt();
     }
 
     @Override
@@ -75,6 +84,8 @@ public class Hike implements Parcelable {
         dest.writeString(parkingAvailable);
         dest.writeString(camping);
         dest.writeString(imageURL);
+        dest.writeString(hikeDifficultyLevel);
+        dest.writeInt(hikeSaved);
     }
 
     @Override
@@ -180,5 +191,21 @@ public class Hike implements Parcelable {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public String getHikeDifficultyLevel() {
+        return hikeDifficultyLevel;
+    }
+
+    public void setHikeDifficultyLevel(String hikeDifficultyLevel) {
+        this.hikeDifficultyLevel = hikeDifficultyLevel;
+    }
+
+    public int getHikeSaved() {
+        return hikeSaved;
+    }
+
+    public void setHikeSaved(int hikeSaved) {
+        this.hikeSaved = hikeSaved;
     }
 }

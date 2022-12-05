@@ -1,18 +1,13 @@
 package com.example.m_hikeapp.adapters;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.m_hikeapp.R;
-import com.example.m_hikeapp.models.Hike;
 import com.example.m_hikeapp.models.HikeObservation;
-
 import java.util.ArrayList;
 
 public class ObservationAdapter extends RecyclerView.Adapter<ObservationAdapter.ViewHolder> {
@@ -38,6 +33,7 @@ public class ObservationAdapter extends RecyclerView.Adapter<ObservationAdapter.
     public void onBindViewHolder(@NonNull ObservationAdapter.ViewHolder holder, int position) {
         HikeObservation hikeObservation = hikeObservations.get(position);
         holder.observationName.setText(hikeObservation.getObservation());
+        holder.observationTime.setText(hikeObservation.getTime());
     }
 
     @Override
@@ -58,12 +54,13 @@ public class ObservationAdapter extends RecyclerView.Adapter<ObservationAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView observationName;
+        TextView observationName, observationTime;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             observationName = itemView.findViewById(R.id.observationName);
+            observationTime = itemView.findViewById(R.id.observationTime);
         }
     }
 

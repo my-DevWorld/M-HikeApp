@@ -1,21 +1,32 @@
 package com.example.m_hikeapp.views;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.Manifest;
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.m_hikeapp.R;
 import com.example.m_hikeapp.models.Hike;
@@ -38,16 +49,18 @@ public class AddHike extends AppCompatActivity {
 
     private TextInputLayout hikeNameOutline, locationOutline, dateOutline, distanceOutline, hikePurposeOutline;
     private TextInputEditText hikeName, location, date, distance, description, numbOfPersons;
+    private TextView difficultLevelLabel;
     private AutoCompleteTextView hikePurpose;
     private Button submitBtn;
     private RadioGroup campingRadioGroup, parkingAvalRadioGroup;
     private RadioButton isCamping, parkingAvalSelectedRadioButton, parkingAvalYes, parkingAvalNo, campingNo, campingYes;
     private ImageView close;
+    private View levelIndicator1, levelIndicator2, levelIndicator3;
 
     private MaterialDatePicker materialDatePicker;
     private CalendarConstraints.Builder calendarConstraints;
 
-    private String purposeOfHike, from;
+    private String purposeOfHike, from, difficultyLevel;
     private Hike hike;
     private Intent intent;
 
@@ -93,6 +106,7 @@ public class AddHike extends AppCompatActivity {
 
     //        Initialise view objects
     private void init() {
+
         close = findViewById(R.id.close);
         hikeNameOutline = findViewById(R.id.hikeNameOutline);
         locationOutline = findViewById(R.id.locationOutline);
@@ -105,6 +119,10 @@ public class AddHike extends AppCompatActivity {
         parkingAvalNo = findViewById(R.id.parkingAvalNo);
         campingNo = findViewById(R.id.campingNo);
         campingYes = findViewById(R.id.campingYes);
+        difficultLevelLabel = findViewById(R.id.difficultLevelLabel);
+        levelIndicator1 = findViewById(R.id.levelIndicator1);
+        levelIndicator2 = findViewById(R.id.levelIndicator2);
+        levelIndicator3 = findViewById(R.id.levelIndicator3);
 
         hikeName = findViewById(R.id.hikeName);
         location = findViewById(R.id.location);
@@ -122,6 +140,9 @@ public class AddHike extends AppCompatActivity {
         hikePurpose.addTextChangedListener(hikePurposeEditTextWatcher);
 
         date.setInputType(InputType.TYPE_NULL);
+        locationOutline.setEndIconOnClickListener(v -> {
+            checkLocationPermission();
+        });
 
         ArrayList<String> list = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.purpose_of_hike)));
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.dropdown_item, list);
@@ -221,11 +242,27 @@ public class AddHike extends AppCompatActivity {
                 && !TextUtils.isEmpty(date.getText()) && !TextUtils.isEmpty(distance.getText())
                 && !TextUtils.isEmpty(hikePurpose.getText()) && Constants.IS_FORM_VALID) {
 
+            if (Integer.valueOf(distance.getText().toString().trim()) <= Constants.LOW_DIFFICULTY_LEVEL){
+                difficultyLevel = Constants.DIFFICULTY_LEVEL1;
+//                levelIndicator1.setBackgroundColor(getColor(R.color.low_level));
+            }
+            else if (Integer.valueOf(distance.getText().toString().trim()) <= Constants.MEDIUM_DIFFICULTY_LEVEL){
+                difficultyLevel = Constants.DIFFICULTY_LEVEL2;
+//                levelIndicator1.setBackgroundColor(getColor(R.color.low_level));
+//                levelIndicator2.setBackgroundColor(getColor(R.color.medium_level));
+            }
+            else {
+                difficultyLevel = Constants.DIFFICULTY_LEVEL3;
+//                levelIndicator1.setBackgroundColor(getColor(R.color.low_level));
+//                levelIndicator2.setBackgroundColor(getColor(R.color.medium_level));
+//                levelIndicator3.setBackgroundColor(getColor(R.color.high_level));
+            }
+
             hike = new Hike(hikeName.getText().toString(), location.getText().toString(),
                     date.getText().toString(), distance.getText().toString(),
                     hikePurpose.getText().toString(), description.getText().toString(),
                     numbOfPersons.getText().toString(),
-                    parkingAvalSelectedRadioButton.getText().toString(), camping, null);
+                    parkingAvalSelectedRadioButton.getText().toString(), camping, Constants.HIKE_THUMBNAIL1, difficultyLevel, 0);
 
             if (from != null){
                 hike = intent.getParcelableExtra(Constants.HIKE_DETAILS);
@@ -238,9 +275,11 @@ public class AddHike extends AppCompatActivity {
                 String hikeDescription = description.getText().toString().trim();
                 String hikeNumbOfPersons = numbOfPersons.getText().toString().trim();
                 String hikeParking = parkingAvalSelectedRadioButton.getText().toString().trim();
+                String hikeDifficultyLevel = difficultyLevel;
 
                 hike = new Hike(id, name, hikeLocation, hikeDate, hikeDistance,
-                        purpose, hikeDescription, hikeNumbOfPersons, hikeParking, camping, null);
+                        purpose, hikeDescription, hikeNumbOfPersons, hikeParking, camping,
+                        null, hikeDifficultyLevel, hike.getHikeSaved());
 
                 viewModel.submitData(this, hike, from);
             }else {
@@ -310,6 +349,11 @@ public class AddHike extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (count < 1){
+                levelIndicator1.setBackgroundColor(getColor(R.color.brownishGreyTwo));
+                levelIndicator2.setBackgroundColor(getColor(R.color.brownishGreyTwo));
+                levelIndicator3.setBackgroundColor(getColor(R.color.brownishGreyTwo));
+            }
         }
 
         @Override
@@ -317,9 +361,57 @@ public class AddHike extends AppCompatActivity {
             if (s != null && !TextUtils.isEmpty(s.toString())) {
                 distanceOutline.setErrorEnabled(false);
                 distanceOutline.setBoxStrokeColor(getResources().getColor(R.color.teal_200, getTheme()));
+                if (Integer.valueOf(distance.getText().toString().trim()) <= Constants.LOW_DIFFICULTY_LEVEL){
+                    difficultyLevel = Constants.DIFFICULTY_LEVEL1;
+                    levelIndicator1.setBackgroundColor(getColor(R.color.low_level));
+                }
+                else if (Integer.valueOf(distance.getText().toString().trim()) <= Constants.MEDIUM_DIFFICULTY_LEVEL){
+                    difficultyLevel = Constants.DIFFICULTY_LEVEL2;
+                    levelIndicator1.setBackgroundColor(getColor(R.color.low_level));
+                    levelIndicator2.setBackgroundColor(getColor(R.color.medium_level));
+                }
+                else {
+                    difficultyLevel = Constants.DIFFICULTY_LEVEL3;
+                    levelIndicator1.setBackgroundColor(getColor(R.color.low_level));
+                    levelIndicator2.setBackgroundColor(getColor(R.color.medium_level));
+                    levelIndicator3.setBackgroundColor(getColor(R.color.high_level));
+                }
+            }
+            else {
+                levelIndicator1.setBackgroundColor(getColor(R.color.brownishGreyTwo));
+                levelIndicator2.setBackgroundColor(getColor(R.color.brownishGreyTwo));
+                levelIndicator3.setBackgroundColor(getColor(R.color.brownishGreyTwo));
             }
         }
     };
+
+    private void checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, Constants.CHECK_LOCATION_REQUEST);
+        } else {
+            String uri = "http://maps.google.com/maps";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+            startActivity(intent);
+//              TODO: OPEN GOOGLE MAPS
+        }
+    }
+
+//    Get result of Location permission
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == Constants.CHECK_LOCATION_REQUEST) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//              TODO: OPEN GOOGLE MAPS
+//                String uri = "http://maps.google.com/maps";
+//                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+//                startActivity(intent);
+                getSupportFragmentManager().beginTransaction().add(R.id.container, new MapsFragment()).commit();
+            }
+        }
+    }
+
 
     private final TextWatcher hikePurposeEditTextWatcher = new TextWatcher() {
         @Override

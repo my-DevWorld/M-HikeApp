@@ -5,9 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import androidx.annotation.Nullable;
-
 import com.example.m_hikeapp.models.Hike;
 import com.example.m_hikeapp.models.HikeObservation;
 import com.example.m_hikeapp.utils.Constants;
@@ -16,6 +14,7 @@ public class DatabaseConnection extends SQLiteOpenHelper {
 
     private Context context;
 
+    //  Constructor
     public DatabaseConnection(@Nullable Context context) {
         super(context, Constants.DATABASE_NAME, null, Constants.DATABASE_VERSION);
         this.context = context;
@@ -37,7 +36,9 @@ public class DatabaseConnection extends SQLiteOpenHelper {
                 + Constants.FIRST_TABLE_COLUM_8 + " TEXT, "
                 + Constants.FIRST_TABLE_COLUM_9 + " TEXT, "
                 + Constants.FIRST_TABLE_COLUM_10 + " TEXT, "
-                + Constants.FIRST_TABLE_COLUM_11 + " TEXT);";
+                + Constants.FIRST_TABLE_COLUM_11 + " TEXT, "
+                + Constants.FIRST_TABLE_COLUM_12 + " TEXT, "
+                + Constants.FIRST_TABLE_COLUM_13 + " INT);";
 
         db.execSQL(query);
 
@@ -59,6 +60,7 @@ public class DatabaseConnection extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    //    Add hike to the sqlite database
     public long addHike(Hike hike) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -72,11 +74,14 @@ public class DatabaseConnection extends SQLiteOpenHelper {
         contentValues.put(Constants.FIRST_TABLE_COLUM_8, hike.getNumberOfPersons());
         contentValues.put(Constants.FIRST_TABLE_COLUM_9, hike.getParkingAvailable());
         contentValues.put(Constants.FIRST_TABLE_COLUM_10, hike.getCamping());
-        contentValues.put(Constants.FIRST_TABLE_COLUM_10, hike.getImageURL());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_11, hike.getImageURL());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_12, hike.getHikeDifficultyLevel());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_13, hike.getHikeSaved());
 
         return db.insert(Constants.FIRST_TABLE_NAME, null, contentValues);
     }
 
+    //    Add observation to the database
     public long addObservation(HikeObservation observation) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -90,29 +95,32 @@ public class DatabaseConnection extends SQLiteOpenHelper {
         return db.insert(Constants.SECOND_TABLE_NAME, null, contentValues);
     }
 
+    //    Get all hikes from the database
     public Cursor getAllHikes() {
         String query = Constants.SELECT_ALL_QUERY + Constants.FIRST_TABLE_NAME;
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = null;
-        if (db != null){
+        if (db != null) {
             cursor = db.rawQuery(query, null);
         }
         return cursor;
     }
 
+    //    Get all observations for a hike from the database
     public Cursor getObservations(int id) {
         String tempString = " WHERE " + Constants.SECOND_TABLE_COLUM_1 + " = " + id;
         String query = Constants.SELECT_ALL_QUERY + Constants.SECOND_TABLE_NAME + tempString;
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = null;
-        if (db != null){
+        if (db != null) {
             cursor = db.rawQuery(query, null);
         }
         return cursor;
     }
 
+    //    Update hike details
     public long updateHike(Hike hike) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -127,7 +135,9 @@ public class DatabaseConnection extends SQLiteOpenHelper {
         contentValues.put(Constants.FIRST_TABLE_COLUM_8, hike.getNumberOfPersons());
         contentValues.put(Constants.FIRST_TABLE_COLUM_9, hike.getParkingAvailable());
         contentValues.put(Constants.FIRST_TABLE_COLUM_10, hike.getCamping());
-        contentValues.put(Constants.FIRST_TABLE_COLUM_10, hike.getImageURL());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_11, hike.getImageURL());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_12, hike.getHikeDifficultyLevel());
+        contentValues.put(Constants.FIRST_TABLE_COLUM_13, hike.getHikeSaved());
 
         long result = db.update(Constants.FIRST_TABLE_NAME, contentValues,
                 Constants.FIRST_TABLE_COLUM_1.concat("=?"), new String[]{String.valueOf(hike.getId())});
@@ -135,16 +145,16 @@ public class DatabaseConnection extends SQLiteOpenHelper {
         return result;
     }
 
+    //    Delete a hike from the database
     public long deleteHike(String id) {
-//        String tempString = " WHERE " + Constants.FIRST_TABLE_COLUM_1 + " = " + id;
-//        String query = Constants.DELETE_QUERY + Constants.FIRST_TABLE_NAME + tempString;
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(Constants.FIRST_TABLE_NAME, Constants.FIRST_TABLE_COLUM_1.concat("=?"), new String[]{id});
 
         return result;
     }
 
-    public void deleteAllHikes(){
+    //    Delete all hikes from the database
+    public void deleteAllHikes() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(Constants.DELETE_QUERY + Constants.FIRST_TABLE_NAME);
         db.execSQL(Constants.DELETE_QUERY + Constants.SECOND_TABLE_NAME);

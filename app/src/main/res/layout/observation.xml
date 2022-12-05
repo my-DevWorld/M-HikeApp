@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/obj_8"
@@ -16,6 +17,19 @@
         tools:text="Observation Name"
         android:textColor="@color/greyishBrown"
         android:textSize="@dimen/textSize_18" />
+
+    <TextView
+        android:id="@+id/observationTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/observationName"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/obj_5"
+        android:fontFamily="@font/gilroysemibold"
+        tools:text="Observation Time"
+        android:textColor="@color/greyishBrown"
+        android:textSize="@dimen/textSize_14"
+        android:textStyle="italic"/>
     <ImageView
         android:id="@+id/editObservation"
         android:layout_width="wrap_content"
@@ -38,7 +52,7 @@
         android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/obj_1_5"
-        app:layout_constraintTop_toBottomOf="@+id/deleteObservation"
+        app:layout_constraintTop_toBottomOf="@+id/observationTime"
         android:layout_marginTop="@dimen/obj_8"
         android:background="@color/teal_200_tint"
         />

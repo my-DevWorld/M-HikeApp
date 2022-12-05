@@ -14,7 +14,7 @@
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/obj_16"
         android:gravity="center_vertical"
         >
         <ImageView
@@ -46,7 +46,7 @@
             android:layout_centerVertical="true"
             />
         <ImageView
-            android:id="@+id/addToFav1"
+            android:id="@+id/fav1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/obj_24"
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/obj_24"
-            android:layout_toStartOf="@+id/addToFav1"
+            android:layout_toStartOf="@+id/fav1"
             android:src="@drawable/ic_delete"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
@@ -118,7 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/obj_8"
             android:fontFamily="@font/gilroymedium"
             tools:text="Date"
             android:textColor="@color/greyishBrown"
@@ -127,7 +127,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="46dp"
+            android:layout_marginStart="@dimen/obj_25"
             android:src="@drawable/ic_distance"
             android:layout_gravity="end"
             />
@@ -136,8 +136,8 @@
             android:id="@+id/hikeDistance1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:paddingTop="4dp"
+            android:layout_marginStart="@dimen/obj_8"
+            android:paddingTop="@dimen/obj_4"
             android:fontFamily="@font/gilroysemibold"
             tools:text="2 km"
             android:textColor="@color/greyishBrown"
@@ -148,7 +148,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="@dimen/obj_25"
             android:src="@drawable/ic_person"
             android:layout_gravity="end"
             />
@@ -157,9 +157,9 @@
             android:id="@+id/numbOfPersons1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/obj_8"
             android:layout_marginEnd="@dimen/obj_12"
-            android:paddingTop="4dp"
+            android:paddingTop="@dimen/obj_4"
             tools:text="2"
             android:textSize="@dimen/textSize_18"
             android:textColor="@color/greyishBrown"
@@ -167,11 +167,39 @@
             android:layout_gravity="end"/>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/difficultLevelLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hikeBar"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/obj_16"
+        android:layout_marginTop="@dimen/obj_12"
+        android:fontFamily="@font/gilroymedium"
+        android:text="@string/diff_level"
+        android:textColor="@color/greyishBrown"
+        android:textSize="@dimen/textSize_18" />
+
+    <TextView
+        android:id="@+id/LevelLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/difficultLevelLabel"
+        app:layout_constraintTop_toBottomOf="@+id/hikeBar"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/obj_5"
+        android:layout_marginTop="@dimen/obj_12"
+        android:fontFamily="@font/gilroymedium"
+        tools:text="Medium"
+        android:textColor="@color/greyishBrown"
+        android:textSize="@dimen/textSize_18" />
+
     <View
         android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/obj_1_5"
-        app:layout_constraintTop_toBottomOf="@+id/hikeBar"
+        app:layout_constraintTop_toBottomOf="@+id/difficultLevelLabel"
         android:layout_marginStart="@dimen/obj_16"
         android:layout_marginEnd="@dimen/obj_16"
         android:layout_marginTop="@dimen/obj_25"
@@ -244,22 +272,6 @@
         android:textColor="@color/greyishBrown"
         android:fontFamily="@font/gilroysemibold"
         android:layout_gravity="end"/>
-
-<!--    <TextView-->
-<!--        android:id="@+id/hikeDescription"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/hikeDescriptionLabel"-->
-<!--        android:layout_marginTop="@dimen/obj_8"-->
-<!--        android:layout_marginStart="@dimen/obj_15"-->
-<!--        android:layout_marginEnd="@dimen/obj_24"-->
-<!--        tools:text="@string/description"-->
-<!--        android:textSize="@dimen/textSize_18"-->
-<!--        android:textColor="@color/greyishBrown"-->
-<!--        android:fontFamily="@font/gilroysemibold"-->
-<!--        android:layout_gravity="end"-->
-<!--        android:visibility="gone"/>-->
 
     <View
         android:id="@+id/line"
@@ -340,7 +352,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/obj_150"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="@dimen/obj_100"
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

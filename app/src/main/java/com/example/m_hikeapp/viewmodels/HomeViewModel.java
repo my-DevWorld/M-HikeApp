@@ -1,18 +1,14 @@
 package com.example.m_hikeapp.viewmodels;
-
 import android.app.Activity;
 import android.app.Application;
 import android.database.Cursor;
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-
 import com.example.m_hikeapp.R;
 import com.example.m_hikeapp.models.Hike;
 import com.example.m_hikeapp.sqlite.DatabaseConnection;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -43,7 +39,7 @@ public class HomeViewModel extends AndroidViewModel {
 //            Database is empty
             activity.findViewById(R.id.emptyState).setVisibility(View.VISIBLE);
             activity.findViewById(R.id.emptyStateText).setVisibility(View.VISIBLE);
-            activity.findViewById(R.id.deleteAllHikes).setVisibility(View.GONE);
+            activity.findViewById(R.id.deleteAllHikesFAB).setVisibility(View.GONE);
         } else {
             while (cursor.moveToNext()) {
 //                Get the data from each hike
@@ -57,10 +53,14 @@ public class HomeViewModel extends AndroidViewModel {
                 String numberOfPersons = cursor.getString(7);
                 String parkingAvailable = cursor.getString(8);
                 String camping = cursor.getString(9);
+                String imageURL = cursor.getString(10);
+                String difficultyLevel = cursor.getString(11);
+                String hikeSaved = cursor.getString(12);
 
-//                Store the data in the Hike model class
+//                Set the hike details from the database to the hike model
                 hike = new Hike(Integer.valueOf(id), hikeName, location, date, distance,
-                        purposeOfHike, description, numberOfPersons, parkingAvailable, camping, null);
+                        purposeOfHike, description, numberOfPersons, parkingAvailable, camping,
+                        imageURL, difficultyLevel, Integer.valueOf(hikeSaved));
 
 //                Add each Hike to the Hikes arraylist.
                 hikes.add(hike);

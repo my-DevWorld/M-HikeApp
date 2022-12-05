@@ -44,6 +44,7 @@
     <string name="hike_date">Date</string>
     <string name="distance">Distance</string>
     <string name="difficulty_level">Difficulty level</string>
+    <string name="difficulty_level1">Difficulty level:\u0020</string>
     <string name="hike_purpose">Purpose of hike</string>
     <string name="km">\u0020km</string>
     <string name="description">Description</string>
@@ -71,6 +72,8 @@
     <string name="hike_distance">Distance</string>
     <string name="home">Home</string>
     <string name="favourite">Favourite</string>
+    <string name="favourite1">to favourite</string>
+    <string name="favourite2">from favourite</string>
     <string name="observation">Observation</string>
     <string name="add_observation">Add</string>
     <string name="add_observation2">Add Observation</string>
@@ -85,8 +88,23 @@
     <string name="hike_deleted">Hike Deleted</string>
     <string name="hike">Hike</string>
     <string name="hike_not_updated">Update failed, please try agian</string>
-    <string name="hike_update_successfully">Update successfully</string>
+    <string name="hike_update_successfully">Success</string>
     <string name="update">Update</string>
+    <string name="logout">Logout</string>
+    <string name="welcome">Welcome!</string>
+    <string name="account">Account</string>
+    <string name="no_hike_here">No hikes here</string>
+    <string name="add">Add\u0020</string>
+    <string name="remove_hike_from_favourite">Remove\u0020</string>
+    <string name="add_hike_message">Hike will be added to favourite</string>
+    <string name="remove_hike_message">Hike will be deleted to favourite</string>
+    <string name="delete">\"Delete \"</string>
+    <string name="delete_all_hikes">Delete all hikes</string>
+    <string name="diff_level">Difficulty level:</string>
+    <string name="delete_hike_message">\"Are you sure you want to delete \"</string>
+    <string name="sign_up_successful">Sign up successful</string>
+    <string name="delete_all_message">Are you sure you want to delete all hikes?</string>
+    <string name="user_id">vw3877a</string>
 
     <string-array name="purpose_of_hike">
         <item>Charity</item>

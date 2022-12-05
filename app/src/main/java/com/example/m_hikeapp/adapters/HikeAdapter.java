@@ -1,26 +1,26 @@
 package com.example.m_hikeapp.adapters;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.m_hikeapp.R;
 import com.example.m_hikeapp.models.Hike;
 import com.example.m_hikeapp.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.ViewHolder> {
+public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.ViewHolder> implements Filterable {
 
     private final Context context;
-    private ArrayList<Hike> hikeArrayList;
+    private ArrayList<Hike> hikeArrayList, allHikes;
     private final ItemClickListener itemClickListener;
 
     public HikeAdapter(Context context, ArrayList<Hike> hikeArrayList, ItemClickListener itemClickListener) {
@@ -63,8 +63,45 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.ViewHolder> {
 
     public void setHikeArrayList(ArrayList<Hike> hikeArrayList){
         this.hikeArrayList = hikeArrayList;
+        allHikes = new ArrayList<>(hikeArrayList);
         notifyDataSetChanged();
     }
+
+    @Override
+    public Filter getFilter() {
+        return hikeFilter;
+    }
+
+    private Filter hikeFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Hike> filteredList = new ArrayList<>();
+            if (charSequence == null || charSequence.length() == 0){
+                filteredList.addAll(allHikes);
+            }
+            else{
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+                for(Hike hike : allHikes){
+                    if(hike.getHikeName().toLowerCase().startsWith(filterPattern)
+                            && hike.getHikeName().toLowerCase().contains(filterPattern)){
+                        filteredList.add(hike);
+                    }
+                }
+            }
+            FilterResults result = new FilterResults();
+            result.values = filteredList;
+            return result;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            if (hikeArrayList != null && !hikeArrayList.isEmpty()){
+                hikeArrayList.clear();
+            }
+            hikeArrayList.addAll((List) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView hikeImage, share, editHike;

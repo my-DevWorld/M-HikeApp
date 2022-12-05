@@ -1,16 +1,20 @@
 package com.example.m_hikeapp.views;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -18,7 +22,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.example.m_hikeapp.R;
 import com.example.m_hikeapp.adapters.ObservationAdapter;
@@ -29,7 +32,6 @@ import com.example.m_hikeapp.viewmodels.HikeDetailsViewModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -38,15 +40,15 @@ public class HikeDetails extends AppCompatActivity implements ObservationAdapter
 
     private HikeDetailsViewModel viewModel;
 
-    private ImageView addToFav, share, hike_image1, delete;
+    private ImageView save, hikeSaved, share, hike_image1, delete, previousPage;
     private TextView hikeName1, location1, hikeDate1, hikeDistance1, numbOfPersons1, camping1,
             parking1, addObservation, hikeDescription;
-    private TextView hikeDetails, cancelBtn;
+    private TextView hikeDetails, cancelBtn, LevelLabel;
     private TextInputLayout observationTextOutline;
     private TextInputEditText observationText, additionalComment;
     private ImageView cameraIcon;
     private Button saveObservationBtn;
-    private Image image = null;
+    private Bitmap image = null;
     private Dialog dialog;
     private RecyclerView observationRecyclerView;
 
@@ -63,14 +65,14 @@ public class HikeDetails extends AppCompatActivity implements ObservationAdapter
         viewModel = new ViewModelProvider(this).get(HikeDetailsViewModel.class);
         intent = getIntent();
         init();
-
     }
 
     private void init() {
 //        initialise view objects
-        addToFav = findViewById(R.id.addToFav1);
+        save = findViewById(R.id.fav1);
         hike_image1 = findViewById(R.id.hike_image1);
         delete = findViewById(R.id.delete);
+        previousPage = findViewById(R.id.previousPage);
         hikeName1 = findViewById(R.id.hikeName1);
         location1 = findViewById(R.id.location1);
         hikeDate1 = findViewById(R.id.hikeDate1);
@@ -81,6 +83,7 @@ public class HikeDetails extends AppCompatActivity implements ObservationAdapter
         hikeDescription = findViewById(R.id.hikeDescription);
         addObservation = findViewById(R.id.addObservation);
         observationRecyclerView = findViewById(R.id.observationRecyclerView);
+        LevelLabel = findViewById(R.id.LevelLabel);
 
         displayHike();
 
@@ -97,13 +100,14 @@ public class HikeDetails extends AppCompatActivity implements ObservationAdapter
         });
 
         delete.setOnClickListener(v -> {
-            confirmDialog();
+            deleteHikeDialog();
         });
+
+        previousPage.setOnClickListener(v -> {onBackPressed();});
     }
 
     private void displayHike() {
         String editDetails = intent.getStringExtra(Constants.HIKE_DETAIL_KEY);
-
         if (editDetails != null) {
             hike = intent.getParcelableExtra(Constants.HIKE_DETAILS);
             Glide.with(this)
@@ -122,11 +126,48 @@ public class HikeDetails extends AppCompatActivity implements ObservationAdapter
                 hikeDescription.setText(getString(R.string.description).concat(": ").concat(hike.getDescription()));
             }
             viewModel.readAllObservation(hike.getId());
+
+            if (hike.getHikeDifficultyLevel().equals(Constants.DIFFICULTY_LEVEL3)){
+                LevelLabel.setText(Constants.DIFFICULTY_LEVEL3);
+                LevelLabel.setTextColor(getColor(R.color.high_level));
+            }else if (hike.getHikeDifficultyLevel().equals(Constants.DIFFICULTY_LEVEL2)){
+                LevelLabel.setText(Constants.DIFFICULTY_LEVEL2);
+                LevelLabel.setTextColor(getColor(R.color.medium_level));
+            }else {
+                LevelLabel.setText(Constants.DIFFICULTY_LEVEL1);
+                LevelLabel.setTextColor(getColor(R.color.low_level));
+            }
+
+            if (hike.getHikeSaved() == 1){
+                save.setImageDrawable(getDrawable(R.drawable.ic_hike_saved));
+            }
+
+            save.setOnClickListener(v -> {
+                if (hike.getHikeSaved() == 0){
+                    ArrayList<String> strings = new ArrayList<>();
+                    strings.add(getString(R.string.add));
+                    strings.add(getString(R.string.favourite1));
+                    strings.add(getString(R.string.add_hike_message));
+                    strings.add(getString(R.string.yes));
+                    strings.add(getString(R.string.cancel));
+                    hike.setHikeSaved(1);
+                    favouriteHike(this, hike, strings);
+                }else {
+                    ArrayList<String> strings = new ArrayList<>();
+                    strings.add(getString(R.string.remove_hike_from_favourite));
+                    strings.add(getString(R.string.favourite2));
+                    strings.add(getString(R.string.remove_hike_message));
+                    strings.add(getString(R.string.yes));
+                    strings.add(getString(R.string.cancel));
+                    hike.setHikeSaved(0);
+                    favouriteHike(this, hike, strings);
+                }
+            });
         }
     }
 
+//    Add Observation to database dialog
     private void openDialog() {
-
         dialog = new Dialog(this, R.style.CustomDialog);
         LayoutInflater inflater = this.getLayoutInflater();
         View customDialog = inflater.inflate(R.layout.observation_details, null);
@@ -148,7 +189,7 @@ public class HikeDetails extends AppCompatActivity implements ObservationAdapter
         });
 
         cameraIcon.setOnClickListener(v -> {
-//            TODO: Open the camera application
+            checkPermissionAndOpenCamera();
         });
 
         dialog.setContentView(customDialog);
@@ -156,6 +197,13 @@ public class HikeDetails extends AppCompatActivity implements ObservationAdapter
         dialog.show();
     }
 
+//    Open camera app
+    private void openCamera() {
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, Constants.CAMERA_REQUEST);
+    }
+
+//    Validate observation input
     private void validateObservationDetails() {
         if (TextUtils.isEmpty(observationText.getText())) {
             observationText.requestFocus();
@@ -181,6 +229,7 @@ public class HikeDetails extends AppCompatActivity implements ObservationAdapter
         }
     }
 
+//    Save observation to database
     private boolean saveObservation() {
         String observation = observationText.getText().toString().trim();
         Date currentTime = Calendar.getInstance().getTime();
@@ -198,7 +247,7 @@ public class HikeDetails extends AppCompatActivity implements ObservationAdapter
 
     //    This method is going to upload the image to a cloud service that stores images
 //    The url of the image will then be stored in the local sqlite database
-    private String uploadImage(Image image) {
+    private String uploadImage(Bitmap image) {
         String imageURL = "";
         if (image != null) {
 //            TODO:Upload image to a cloud service and then get the url to the image
@@ -211,20 +260,79 @@ public class HikeDetails extends AppCompatActivity implements ObservationAdapter
 
     }
 
+//    Delete hike from database
     private void deleteHike(Activity activity, String id) {
         viewModel.deleteHike(activity, id);
     }
 
-    private void confirmDialog() {
+//    Delete hike dialog
+    private void deleteHikeDialog() {
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
-        builder.setTitle("Delete " + hike.getHikeName());
-        builder.setMessage("Are you sure you want to delete " + hike.getHikeName() + "?");
+        builder.setTitle(getString(R.string.delete) + hike.getHikeName());
+        builder.setMessage(getString(R.string.delete_hike_message) + hike.getHikeName() + "?");
         builder.setBackground(getDrawable(R.drawable.dialog_background));
-        builder.setPositiveButton("Yes", (dialogInterface, i) -> deleteHike(HikeDetails.this, String.valueOf(hike.getId())));
-        builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
+        builder.setPositiveButton(getString(R.string.yes), (dialogInterface, i) -> {
+            deleteHike(HikeDetails.this, String.valueOf(hike.getId()));
+        });
+        builder.setNegativeButton(getString(R.string.cancel), (dialogInterface, i) -> {
 
         });
         builder.create().show();
+    }
+
+//    Add hike to  favourite list dialog
+    private void favouriteHike(Activity activity, Hike hike, ArrayList<String> strings){
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
+        builder.setTitle(String.format("%s%s%s", strings.get(0), hike.getHikeName().concat(" "), strings.get(1)));
+        builder.setMessage(strings.get(2));
+        builder.setBackground(getDrawable(R.drawable.dialog_background));
+        builder.setPositiveButton(strings.get(3), ((dialogInterface, i) -> {
+            viewModel.addToFavourite(activity, hike);
+        }));
+        builder.setNegativeButton(strings.get(4), (dialogInterface, i) -> {
+
+        });
+        builder.create().show();
+    }
+
+// Result for camera intent
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.CAMERA_REQUEST) {
+            if (data != null){
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+                uploadImage(photo);
+            }
+        }
+    }
+
+//    Check camera permission
+    private void checkPermissionAndOpenCamera() {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, Constants.CHECK_CAMERA_REQUEST);
+        } else {
+            openCamera();
+        }
+    }
+
+//    Get result of camera permission
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == Constants.CHECK_CAMERA_REQUEST) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openCamera();
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, Home.class));
+        finish();
+        super.onBackPressed();
     }
 }
 

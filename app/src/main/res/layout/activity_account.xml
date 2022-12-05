@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.Account">
+
+    <TextView
+        android:id="@+id/acctLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/obj_32"
+        android:layout_marginStart="@dimen/obj_24"
+        android:text="@string/account"
+        android:textSize="@dimen/textSize_24"
+        android:textColor="@color/greyishBrown"
+        android:fontFamily="@font/gilroysemibold"
+        />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/userAvatar"
+        android:layout_width="@dimen/obj_104"
+        android:layout_height="@dimen/obj_104"
+        app:layout_constraintTop_toBottomOf="@+id/acctLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/obj_32"
+        android:layout_marginStart="@dimen/obj_24"
+        android:src="@drawable/user_profile"
+        app:civ_border_width="0.2dp"
+        app:civ_border_color="@color/white"/>
+
+    <TextView
+        android:id="@+id/welcomeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/acctLabel"
+        app:layout_constraintStart_toEndOf="@+id/userAvatar"
+        android:layout_marginTop="@dimen/obj_61"
+        android:layout_marginStart="@dimen/obj_24"
+        android:text="@string/welcome"
+        android:textSize="@dimen/textSize_16"
+        android:textColor="@color/greyishBrown"
+        android:fontFamily="@font/gilroysemibold"
+        />
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeLabel"
+        app:layout_constraintStart_toEndOf="@+id/userAvatar"
+        android:layout_marginTop="@dimen/obj_8"
+        android:layout_marginStart="@dimen/obj_24"
+        tools:text="Derrick A."
+        android:textSize="@dimen/textSize_22"
+        android:textColor="@color/greyishBrown"
+        android:fontFamily="@font/gilroysemibold"
+        />
+
+    <TextView
+        android:id="@+id/logoutBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/obj_48"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+        android:layout_marginBottom="@dimen/obj_24"
+        android:layout_marginStart="@dimen/obj_24"
+        android:layout_marginEnd="@dimen/obj_24"
+        android:text="@string/logout"
+        android:textSize="@dimen/textSize_18"
+        android:textColor="@color/teal_200"
+        android:fontFamily="@font/gilroysemibold"
+        android:background="@drawable/edit_text_border_brown_grey"
+        android:gravity="center"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/whiteTextColor"
+        app:itemIconSize="@dimen/obj_24"
+        app:itemIconTint="@drawable/bottom_navigation_item_colors"
+        app:itemRippleColor="@color/brownishGreyTwo"
+        app:itemTextAppearanceActive="@font/gilroymedium"
+        app:itemTextAppearanceInactive="@font/gilroylight"
+        app:itemTextColor="@drawable/bottom_navigation_item_colors"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
+
+    <FrameLayout
+        android:id="@+id/progressContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/frame_background"
+        android:visibility="gone">
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,16 +26,12 @@ public class HikePayload implements Parcelable {
     }
 
     protected HikePayload(Parcel in) {
-//        userID = in.readString();
         userArrayList = in.createTypedArrayList(Hike.CREATOR);
-//        total = in.readInt();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-//        dest.writeString(userID);
         dest.writeTypedList(userArrayList);
-//        dest.writeInt(total);
     }
 
     @Override
@@ -55,15 +51,7 @@ public class HikePayload implements Parcelable {
         }
     };
 
-//    public String getUserID() {
-//        return userID;
-//    }
-
     public ArrayList<Hike> getUserArrayList() {
         return userArrayList;
     }
-
-//    public int getTotal() {
-//        return total;
-//    }
 }

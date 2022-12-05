@@ -5,17 +5,15 @@ import android.app.Application;
 import android.content.Intent;
 import android.database.Cursor;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-
 import com.example.m_hikeapp.R;
+import com.example.m_hikeapp.models.Hike;
 import com.example.m_hikeapp.models.HikeObservation;
 import com.example.m_hikeapp.sqlite.DatabaseConnection;
 import com.example.m_hikeapp.views.Home;
 import com.google.android.material.snackbar.Snackbar;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -98,6 +96,12 @@ public class HikeDetailsViewModel extends AndroidViewModel {
             activity.startActivity(intent);
             activity.finish();
         }
+    }
+
+//    Add hike to favourite
+    public void addToFavourite(Activity activity, Hike hike){
+        DetailsConfirmationViewModel viewModel = new DetailsConfirmationViewModel(activity.getApplication());
+        viewModel.updateHike(activity, hike);
     }
 }
 

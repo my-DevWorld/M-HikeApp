@@ -65,16 +65,16 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         androidx.core.splashscreen.SplashScreen splashScreen = androidx.core.splashscreen.SplashScreen.installSplashScreen(this);
         View content = findViewById(android.R.id.content);
-        content.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                if(isReady){
-                    content.getViewTreeObserver().removeOnPreDrawListener(this);
-                }
-                dismissSplashScreen();
-                return false;
-            }
-        });
+//        content.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+//            @Override
+//            public boolean onPreDraw() {
+//                if(isReady){
+//                    content.getViewTreeObserver().removeOnPreDrawListener(this);
+//                }
+//                dismissSplashScreen();
+//                return false;
+//            }
+//        });
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
@@ -105,11 +105,7 @@ public class Login extends AppCompatActivity {
             loginBtn.requestFocus();
             loginBtn.setFocusable(true);
             loginPassword.clearFocus();
-//            formValidation();
-            Intent intent = new Intent(this, Home.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
+            formValidation();
         });
 
         google_btn.setOnClickListener(v -> {
@@ -124,15 +120,14 @@ public class Login extends AppCompatActivity {
         loginPassword.addTextChangedListener(userPasswordEditTextWatcher);
     }
 
-    private void dismissSplashScreen() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                isReady = true;
-//                startActivity(new Intent(Login.this, Signup.class));
-            }
-        }, 3000);
-    }
+//    private void dismissSplashScreen() {
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                isReady = true;
+//            }
+//        }, 3000);
+//    }
 
     private void formValidation(){
 //        Validate input

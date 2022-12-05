@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,10 +13,9 @@
         android:layout_marginStart="@dimen/obj_20"
         android:layout_marginTop="@dimen/obj_20"
         android:layout_marginEnd="@dimen/obj_20"
-
-        android:paddingStart="@dimen/obj_150"
         android:background="@drawable/edit_text_border_brown_grey"
         android:elevation="@dimen/obj_5"
+        android:paddingStart="@dimen/obj_150"
         app:cardElevation="@dimen/obj_3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,116 +27,56 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/searchProperty"
+            <EditText
+                android:id="@+id/searchHike"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/obj_16"
                 android:layout_toStartOf="@+id/search_icon"
                 android:fontFamily="@font/gilroymedium"
                 android:gravity="center_vertical"
                 android:hint="@string/search_hike_name"
+                android:background="@color/white"
                 android:textColor="@color/blackText"
-                android:textSize="@dimen/textSize_15" />
+                android:textSize="@dimen/textSize_18" />
 
             <ImageView
                 android:id="@+id/search_icon"
                 android:layout_width="@dimen/obj_24"
                 android:layout_height="@dimen/obj_24"
-                android:layout_toStartOf="@+id/menu_icon"
                 android:layout_marginStart="@dimen/obj_20"
                 android:layout_marginEnd="@dimen/obj_8"
+                android:contentDescription="@string/search_hike_name"
                 android:src="@drawable/ic_baseline_search_24"
-                android:contentDescription="@string/search_hike_name"/>
-
-            <ImageView
-                android:id="@+id/menu_icon"
-                android:layout_width="@dimen/obj_24"
-                android:layout_height="@dimen/obj_24"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/obj_8"
-                android:src="@drawable/ic_menu"
-                android:contentDescription="@string/search_hike_name"/>
+                android:layout_centerVertical="true"/>
+
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-<!--    <HorizontalScrollView-->
-<!--        android:id="@+id/searchOptions"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="@dimen/obj_24"-->
-<!--        android:layout_marginTop="@dimen/obj_10"-->
-<!--        android:layout_marginEnd="@dimen/obj_24"-->
-<!--        android:fillViewport="false"-->
-<!--        android:measureAllChildren="false"-->
-<!--        android:scrollbars="none"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/search_bar">-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:paddingBottom="@dimen/obj_16">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/locationFilter"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="@dimen/obj_40"-->
-<!--                android:background="@drawable/default_border"-->
-<!--                android:fontFamily="@font/gilroymedium"-->
-<!--                android:gravity="center"-->
-<!--                android:paddingStart="@dimen/obj_8"-->
-<!--                android:paddingEnd="@dimen/obj_8"-->
-<!--                android:text="@string/hike_location"-->
-<!--                android:textColor="@color/greyishBrown"-->
-<!--                android:textSize="@dimen/textSize_13"-->
-<!--                />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/dateFilter"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="@dimen/obj_40"-->
-<!--                android:layout_marginStart="8dp"-->
-<!--                android:background="@drawable/default_border"-->
-<!--                android:fontFamily="@font/gilroymedium"-->
-<!--                android:gravity="center"-->
-<!--                android:paddingStart="@dimen/obj_8"-->
-<!--                android:paddingEnd="@dimen/obj_8"-->
-<!--                android:text="@string/hike_date"-->
-<!--                android:textColor="@color/greyishBrown"-->
-<!--                android:textSize="@dimen/textSize_13"-->
-<!--                />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/distanceFilter"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="@dimen/obj_40"-->
-<!--                android:layout_marginStart="8dp"-->
-<!--                android:background="@drawable/default_border"-->
-<!--                android:fontFamily="@font/gilroymedium"-->
-<!--                android:gravity="center"-->
-<!--                android:paddingStart="@dimen/obj_8"-->
-<!--                android:paddingEnd="@dimen/obj_8"-->
-<!--                android:text="@string/hike_distance"-->
-<!--                android:textColor="@color/greyishBrown"-->
-<!--                android:textSize="@dimen/textSize_13"-->
-<!--                />-->
-<!--        </LinearLayout>-->
-<!--    </HorizontalScrollView>-->
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:searchIcon="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
 
     <ImageView
         android:id="@+id/emptyState"
         android:layout_width="@dimen/obj_110"
         android:layout_height="@dimen/obj_110"
+        android:contentDescription="@string/no_hike_created"
         android:src="@drawable/inbox"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/no_hike_created"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/emptyStateText"
@@ -159,11 +97,11 @@
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/obj_12"
         android:layout_marginStart="@dimen/obj_15"
+        android:layout_marginTop="@dimen/obj_12"
         android:layout_marginEnd="@dimen/obj_15"
-        android:visibility="visible"
         android:overScrollMode="never"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_bar">
 
@@ -171,37 +109,55 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/hikeRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/hike_details"
                 android:layout_marginBottom="@dimen/obj_50"
-                />
+                tools:listitem="@layout/hike_details" />
+
             <TextView
                 android:id="@+id/deleteAllHikes"
                 style="@android:style/Widget.Material.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/obj_50"
+                android:layout_gravity="center"
                 android:layout_marginTop="@dimen/obj_5"
+                android:background="@drawable/negative_button_background"
+                android:elevation="@dimen/obj_3"
                 android:fontFamily="@font/gilroysemibold"
                 android:padding="@dimen/obj_10"
-                android:text="Delete all hikes"
-                android:textSize="@dimen/textSize_20"
-                android:visibility="visible"
-                android:layout_gravity="center"
-                android:background="@drawable/negative_button_background"
-                android:textColor="@color/delete"
+                android:text="@string/delete_all_hikes"
                 android:textAllCaps="false"
-                android:elevation="@dimen/obj_3"/>
+                android:textColor="@color/delete"
+                android:textSize="@dimen/textSize_20"
+                android:visibility="invisible"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/obj_150"
-                android:layout_marginTop="100dp"
-                />
+                android:layout_marginTop="100dp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/deleteAllHikesFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/obj_24"
+        android:layout_marginBottom="@dimen/obj_12"
+        android:contentDescription="@string/fab_content_desc"
+        android:elevation="@dimen/obj_5"
+        app:layout_constraintBottom_toTopOf="@id/floating_action_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:pressedTranslationZ="@dimen/obj_05"
+        app:srcCompat="@drawable/ic_delete_fab"
+        app:backgroundTint="@color/white"
+        app:tint="@color/delete"
+        app:shapeAppearance="@dimen/obj_5"
+        app:fabCustomSize="@dimen/obj_40"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
@@ -218,24 +174,25 @@
         app:pressedTranslationZ="@dimen/obj_05"
         app:shapeAppearance="@drawable/fab_background"
         app:shapeAppearanceOverlay="@drawable/fab_background"
-        app:srcCompat="@drawable/ic_plus_24" />
+        app:srcCompat="@drawable/ic_plus_24"
+        app:fabSize="normal"/>
 
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@color/whiteTextColor"
-            app:itemIconSize="@dimen/obj_24"
-            app:itemIconTint="@drawable/bottom_navigation_item_colors"
-            app:itemRippleColor="@color/brownishGreyTwo"
-            app:itemTextAppearanceActive="@font/gilroymedium"
-            app:itemTextAppearanceInactive="@font/gilroylight"
-            app:itemTextColor="@drawable/bottom_navigation_item_colors"
-            app:labelVisibilityMode="labeled"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/bottom_navigation_menu" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/whiteTextColor"
+        app:itemIconSize="@dimen/obj_24"
+        app:itemIconTint="@drawable/bottom_navigation_item_colors"
+        app:itemRippleColor="@color/brownishGreyTwo"
+        app:itemTextAppearanceActive="@font/gilroymedium"
+        app:itemTextAppearanceInactive="@font/gilroylight"
+        app:itemTextColor="@drawable/bottom_navigation_item_colors"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

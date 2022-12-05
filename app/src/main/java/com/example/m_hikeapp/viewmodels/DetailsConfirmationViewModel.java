@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-
 import com.example.m_hikeapp.R;
 import com.example.m_hikeapp.models.Hike;
 import com.example.m_hikeapp.sqlite.DatabaseConnection;

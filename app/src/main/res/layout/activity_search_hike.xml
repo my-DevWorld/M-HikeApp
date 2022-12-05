@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.SearchHike">
+
+    <RelativeLayout
+        android:id="@+id/customToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/obj_50"
+        android:layout_marginStart="@dimen/obj_16"
+        android:layout_marginTop="@dimen/obj_16"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/obj_24"
+            android:layout_height="@dimen/obj_24"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_back" />
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/obj_24"
+            android:layout_marginEnd="@dimen/obj_8"
+            android:layout_toEndOf="@+id/back"
+            android:background="@null"
+            android:completionThreshold="1"
+            android:fontFamily="@font/gilroysemibold"
+            android:hint="@string/search_hike_name"
+            android:inputType="text"
+            android:lines="1"
+            android:maxLength="35"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSize_16" />
+
+        <ImageView
+            android:id="@+id/cancel"
+            android:layout_width="@dimen/obj_24"
+            android:layout_height="@dimen/obj_24"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/obj_8"
+            android:layout_marginEnd="@dimen/obj_24"
+            android:src="@drawable/close_btn" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/obj_05"
+        android:layout_marginTop="1dp"
+        android:background="@color/brownGrey"
+        android:elevation="@dimen/obj_1_5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customToolbar" />
+
+    <LinearLayout
+        android:id="@+id/searchFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/obj_24"
+        android:layout_marginTop="@dimen/obj_16"
+        android:layout_marginEnd="@dimen/obj_24"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customToolbar">
+
+        <TextView
+            android:id="@+id/locationFilter"
+            android:layout_width="@dimen/obj_0"
+            android:layout_height="@dimen/obj_40"
+            android:layout_weight="1"
+            android:background="@drawable/default_border"
+            android:fontFamily="@font/gilroymedium"
+            android:gravity="center"
+            android:paddingStart="@dimen/obj_8"
+            android:paddingEnd="@dimen/obj_8"
+            android:text="@string/hike_location"
+            android:textColor="@color/greyishBrown"
+            android:textSize="@dimen/textSize_13" />
+
+        <TextView
+            android:id="@+id/dateFilter"
+            android:layout_width="@dimen/obj_0"
+            android:layout_height="@dimen/obj_40"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/default_border"
+            android:fontFamily="@font/gilroymedium"
+            android:gravity="center"
+            android:paddingStart="@dimen/obj_8"
+            android:paddingEnd="@dimen/obj_8"
+            android:text="@string/hike_date"
+            android:textColor="@color/greyishBrown"
+            android:textSize="@dimen/textSize_13" />
+
+        <TextView
+            android:id="@+id/distanceFilter"
+            android:layout_width="@dimen/obj_0"
+            android:layout_height="@dimen/obj_40"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/default_border"
+            android:fontFamily="@font/gilroymedium"
+            android:gravity="center"
+            android:paddingStart="@dimen/obj_8"
+            android:paddingEnd="@dimen/obj_8"
+            android:text="@string/hike_distance"
+            android:textColor="@color/greyishBrown"
+            android:textSize="@dimen/textSize_13" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:visibility="visible"
+        app:searchIcon="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchFilter" />
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="@dimen/obj_12"-->
+<!--        android:layout_marginTop="@dimen/obj_8"-->
+<!--        android:layout_marginEnd="@dimen/obj_12"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/searchFilter"-->
+<!--        android:background="@color/frame_background">-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recyclerView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:imeOptions="actionDone"-->
+<!--            android:visibility="visible"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:listitem="@layout/location_list" />-->
+
+<!--        <com.google.android.material.progressindicator.CircularProgressIndicator-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            android:indeterminate="true" />-->
+
+<!--&lt;!&ndash;        <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:background="@color/frame_background"&ndash;&gt;-->
+<!--&lt;!&ndash;            >&ndash;&gt;-->
+<!--&lt;!&ndash;            <com.google.android.material.progressindicator.CircularProgressIndicator&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                app:layout_constraintTop_toTopOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:indeterminate="true" />&ndash;&gt;-->
+<!--&lt;!&ndash;        </LinearLayout>&ndash;&gt;-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@color/frame_background">-->
+
+<!--        <com.google.android.material.progressindicator.CircularProgressIndicator-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            android:indeterminate="true" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+</androidx.constraintlayout.widget.ConstraintLayout>
